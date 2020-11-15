@@ -1,0 +1,334 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+@import 'base';
+@import 'mixin';
+@import 'header';
+@import 'headerNav';
+@import 'footer';
+@import 'util';
+
+
+
+// ===========================================================================
+//  mainVisual
+// ============================================================================
+.mainVisual {
+    height: calc(100vh - 60px);
+    display: flex;
+    justify-content: center;
+    align-items: center;;
+    width: 100%;
+    background: url("../images/mainVisual.jpg") no-repeat center/cover;
+}
+
+// ===========================================================================
+//  mainText
+// ============================================================================
+.mainText {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    padding: 40px;
+    background-color: rgba(68, 64, 64, 0.301);
+    @include mq(s) {
+		padding: 20px;
+	}
+}
+.mainText_text {
+    font-size: 2.8rem;
+    color: #fff;
+    font-weight: bold;
+    @include mq(s) {
+        font-size: 2.0rem;
+	}
+}
+.mainText_lead {
+    font-size: 3.6rem;
+    margin: 35px 0;
+    display: inline-block;
+    @include mq(s) {
+        font-size: 2.8rem;
+    }
+}
+
+// ===========================================================================
+//  contentsArea
+// ============================================================================
+.contentsArea {
+	width: $width_base-l;
+	max-width: $width_max;
+    margin: 0 auto;
+    padding-bottom: 100px;
+}
+
+// ===========================================================================
+//  heading02
+// ============================================================================
+.heading02 {
+    color: $color-main;
+    font-size: 2.6rem;
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: bold;
+}
+.heading02-02 {
+    @extend .heading02;
+    color: #004aad;
+}
+
+// ===========================================================================
+//  section
+// ============================================================================
+.section {
+    margin-top: 60px;
+    @include mq(s) {
+        margin-top: 40px;
+	}
+}
+.section-review {
+    margin-top: 40px;
+}
+
+// ===========================================================================
+//  block01
+// ============================================================================
+.block01 {
+    display: flex;
+    @include mq(s) {
+		display: block;
+	}
+}
+.block01_item {
+    width: calc((100% - 40px) / 3);
+    margin-right: 20px;
+    padding: 15px;
+    justify-content: space-between;
+    text-align: center;
+    background-color: #fff;
+    box-shadow: 3px 5px 10px rgba(0,0,0,0.25);
+    &:nth-of-type(3n) {
+        margin-right: 0;;
+    }
+    @include mq(s) {
+        width: 100%;
+        & + & {
+            margin-top: 20px;
+        }
+	}
+}
+.block01_title {
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+.block01_head {
+    font-size: 1.8rem;
+}
+.block01_img {
+    width: 100px;
+    margin: 0 auto;
+}
+
+// ===========================================================================
+//  float-btn
+// ============================================================================
+.float-btn {
+    display: block;
+    z-index: 1000;
+    position: fixed;
+    bottom: -20px;
+    background: #ff5757;
+    width: 130px;
+    height: 130px;
+    right: -20px;
+    border-radius: 100%;
+    text-align: center;
+    font-size: 35px;
+    line-height: 130px;
+    cursor: pointer;
+    &:hover {
+        bottom: -18px;
+        text-decoration: none;
+        transition: .2s;
+    }
+}
+.float-btn-icon {
+    position: relative;
+    height: 30px;
+    top: -20px;
+    left: -2px;
+}
+.fa-pen {
+    color: #fff;
+    &::before {
+        content: "\f304";
+    }
+}
+.float-btn-text {
+    height: 10px;
+    font-size: 10px;
+    position: relative;
+    top: -20px;
+    font-weight: 700;
+    color: #fff;
+    left: -4px;
+}
+
+// ===========================================================================
+//  block02
+// ============================================================================
+.block02 {
+    padding: 20px;
+    width: 75%;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
+    & + & {
+        margin-top: 30px;
+    }
+    @include mq(s) {
+		width: 100%;
+	}
+}
+.block02_box {
+    display: flex;
+    border-bottom: 1px dotted #dcdcdc;
+    padding: 7px 0;
+}
+.block02_item {
+    width: 30%;
+    > i {
+        margin-right: 8px;
+    }
+}
+.block02_item-02 {
+    @extend .block02_item;
+    padding: 8px 0;
+}
+.block02_cat {
+    font-weight: bold;
+}
+
+// ===========================================================================
+//  btn
+// ============================================================================
+
+.btn {
+    font-size: 1.4rem!important;
+}
+.btn-01 {
+    @extend .btn;
+    display: block;
+    width: 200px;
+    padding: 15px 10px;
+    border-radius: 10px;
+    margin: 0 auto;
+    border: 1px solid $color-main;
+    color: $color-main;
+    &:hover {
+        color: #fff;
+        background-color: $color-main;
+        transition: .2s;
+    }
+}
+.btn-02 {
+    @extend .btn-01;
+    display: block;
+    width: 70%;
+    padding: 15px 10px;
+    border-radius: 10px;
+    margin: 0 auto;
+    color: #fff;
+    background-color: $color-main;
+    border: none;
+    &:hover {
+        color: #fff;
+        background-color: #ff7457;
+        transition: .2s;
+    }
+    @include mq(s) {
+		width: 100%;
+	}
+}
+.btn-02-s {
+    @extend .btn-02;
+    padding: 5px;
+    font-size: 1.2rem!important;
+}
+.btn-03 {
+    @extend .btn-02;
+    text-align: center;
+    margin: 0 auto;
+    padding: 10px 0;
+}
+
+// ===========================================================================
+//  form
+// ============================================================================
+.formArea {
+    padding: 25px;
+    margin: 0 auto;
+    @include mq(s) {
+        padding: 5px;
+	}
+}
+.formArea .form-group {
+    border-bottom: 1px dotted #dcdcdc;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    @include mq(s) {
+        display: block;
+    }
+    > label {
+        width: 20%;
+        margin: 0 7% 0 0;
+        @include mq(s) {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+    }
+    > input {
+        width: 70%;
+        @include mq(s) {
+            width: 100%;
+        }
+    }
+    > textarea {
+        width: 70%;
+        @include mq(s) {
+            width: 100%;
+        }
+    }
+}
+
+// ===========================================================================
+//  table
+// ============================================================================
+.table-01 {
+    > tbody {
+        > tr {
+            border-bottom: 1px dotted #dcdcdc;
+            > th, td {
+                padding: 15px 10px;
+            }
+            >th {
+                width: 30%;
+            }
+        }
+    }
+}
+
+// ===========================================================================
+//  .navbar-nav
+// ============================================================================
+.navbar-nav {
+    flex-direction: row;
+}

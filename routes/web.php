@@ -1,18 +1,21 @@
 <?php
+Route::get('/', 'App\Http\Controllers\IndexController@index')->name('index');
 
-use Illuminate\Support\Facades\Route;
+Route::get('/reviews', 'ShopController@index')->name('shop.list');
+Route::get('/review/new', 'ShopController@create')->name('shop.new');
+Route::post('/review', 'ShopController@store')->name('shop.store');
+Route::get('/review/edit/{id}', 'ShopController@edit')->name('shop.edit');
+Route::post('/review/update/{id}', 'ShopController@update')->name('shop.update');
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+Route::get('/review/{id}', 'ShopController@show')->name('shop.detail');
+Route::delete('/review/{id}', 'ShopController@destroy')->name('shop.destroy');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
