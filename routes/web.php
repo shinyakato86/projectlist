@@ -1,9 +1,10 @@
 <?php
 Route::get('/', 'App\Http\Controllers\IndexController@index')->name('index');
 
-Route::get('/reviews', 'ShopController@index')->name('shop.list');
-Route::get('/review/new', 'ShopController@create')->name('shop.new');
-Route::post('/review', 'ShopController@store')->name('shop.store');
+Route::get('/projectlist', 'App\Http\Controllers\ProjectlistController@index')->name('projectlist.index');
+
+Route::get('/review/new', 'App\Http\Controllers\ProjectlistController@create')->name('projectlist.new');
+Route::post('/review', 'App\Http\Controllers\ProjectlistController@store')->name('projectlist.store');
 Route::get('/review/edit/{id}', 'ShopController@edit')->name('shop.edit');
 Route::post('/review/update/{id}', 'ShopController@update')->name('shop.update');
 

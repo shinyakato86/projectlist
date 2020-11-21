@@ -4,8 +4,8 @@
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
     <meta name='csrf-token' content='{{ csrf_token() }}'>
-    <title>ミューレビュ</title>
-    <meta name="description" content="ミューレビュは自分が聞いた音楽の感想を投稿するサイトです。">
+    <title>{{ config('app.name') }}</title>
+    <meta name="description" content="受注案件登録システムです。">
     <meta name="format-detection" content="telephone=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
