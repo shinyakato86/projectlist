@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Projectlist;
+use App\Models\Creators;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -21,17 +22,21 @@ class ProjectlistController extends Controller
 
     public function index(Request $request)
     {
+
+        $users = \DB::table('users')->pluck('name');
+
         if ($request->filled('keyword')) {
             $keyword = $request->input('keyword');
-            $projectlist = Projectlist::where('name', 'like', '%' . $keyword . '%')
-            ->orWhere('address', 'like', '%' . $keyword . '%')
-            ->orWhere('coment', 'like', '%' . $keyword . '%')
+            $projectlist = Projectlist::where('project_name', 'like', '%' . $keyword . '%')
+            ->orWhere('project_name', 'like', '%' . $keyword . '%')
             ->get();
-        } else {
+        } elseif ($request->filled('seach_user')){
+            $seach_user = $request->input('seach_user');
+            $projectlist = Projectlist::all()->where('author_name',$seach_user);
+        }else{
             $projectlist = Projectlist::all();
-        }
-
-        return view('show', ['projectlist' => $projectlist]);
+          }
+        return view('show', compact('projectlist', 'users'));
     }
 
     /**
@@ -96,7 +101,7 @@ class ProjectlistController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Shop  $shop
+     * @param  \App\ifrojectlist  $projectlist
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -115,44 +120,77 @@ class ProjectlistController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Shop  $shop
+     * @param  \App\Projectlist  $projectlist
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $shop = Shop::find($id);
-        $categories = Category::all()->pluck('name', 'id');
-        return view('edit', ['shop' => $shop, 'categories' => $categories]);
+        $projectlist = Projectlist::find($id);
+        $creators = Creators::all()->where('id',$id);
+
+        $users = \DB::table('users')->pluck('name');
+
+        $categories = \DB::table('categories')->pluck('category_name');
+
+        $departments = \DB::table('departments')->pluck('department_name');
+
+        $status = \DB::table('status')->pluck('status_name');
+
+        $clients = \DB::table('clients')->pluck('client_name');
+
+        return view('edit', compact('projectlist', 'creators', 'users', 'categories', 'departments', 'status', 'clients'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Shop  $shop
+     * @param  \App\Projectlist  $Projectlist
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id, Shop $shop)
+    public function update(Request $request, $id, Projectlist $projectlist)
     {
-        $shop = Shop::find($id);
-        $shop->name = request('name');
-        $shop->address = request('address');
-        $shop->coment = request('coment');
-        $shop->category_id = request('category_id');
-        $shop->save();
-        return redirect()->route('shop.detail', ['id' => $shop->id]);
+        $projectlist= Projectlist::find($id);
+        $projectlist->project_name = request('project_name');
+        $projectlist->department_name = request('department_name');
+        $projectlist->sales_name = request('sales_name');
+        $projectlist->client_name = request('client_name');
+        $projectlist->price = request('price');
+        $projectlist->status = request('status');
+        $projectlist->save();
+
+        $old_creators = Creators::find($id);
+        $old_creators->delete();
+
+        $data = [];
+
+        for ($i=0; $i < count(request('creator_name')); $i++) {
+
+          $data[]= array ('creator_name'=>$request['creator_name'][$i],
+                          'id'=>$projectlist->id,
+                          'creator_price'=>$request['creator_price'][$i],
+                          'creator_category'=>$request['creator_category'][$i]);
+
+        }
+
+        DB::table('creators')->insert($data);
+
+        return redirect()->route('projectlist.detail', ['id' => $projectlist->id]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Shop  $shop
+     * @param  \App\Projectlist  $projectlist
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $shop = Shop::find($id);
-        $shop->delete();
-        return redirect('/reviews');
+        $projectlist = Projectlist::find($id);
+        $creators = Creators::find($id);
+
+        $projectlist->delete();
+        $creators->delete();
+        return redirect('/projectlist');
     }
 }

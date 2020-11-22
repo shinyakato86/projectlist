@@ -11184,6 +11184,78 @@ a.text-dark:focus {
 }
 
 /* ===========================================================================
+  header
+============================================================================= */
+
+.header {
+  background-color: #fff;
+}
+
+@media only screen and (max-width: 767px) {
+  .header_logo {
+    width: 150px;
+  }
+}
+
+/* ===========================================================================
+  headerNav
+============================================================================= */
+
+.headerNav {
+  width: 96%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 !important;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ===========================================================================
+  footer
+============================================================================= */
+
+.footer {
+  background-color: #333;
+  padding: 20px 0;
+}
+
+@media only screen and (max-width: 767px) {
+  .footer {
+    padding: 10px 0;
+  }
+}
+
+.footer_inner {
+  width: 96%;
+  max-width: 1240px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+@media only screen and (max-width: 1024px) {
+  .footer_inner {
+    width: calc(100% - 20px * 2);
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .footer_inner {
+    width: calc(100% - 15px * 2);
+  }
+}
+
+.footer_copy {
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+@media only screen and (max-width: 767px) {
+  .footer_copy {
+    font-size: 1rem;
+  }
+}
+
+/* ===========================================================================
   base
 ============================================================================= */
 
@@ -11315,6 +11387,12 @@ html {
   line-height: 1.68;
 }
 
+@media only screen and (max-width: 1280px) {
+  html {
+    font-size: 55%;
+  }
+}
+
 body {
   font-size: 1.4rem;
   font-family: "\30D2\30E9\30AE\30CE\89D2\30B4   Pro W3", "Hiragino Kaku Gothic Pro", "\30E1\30A4\30EA\30AA", Meiryo, sans-serif;
@@ -11377,76 +11455,14 @@ footer {
   margin-top: auto;
 }
 
-/* ===========================================================================
-  header
-============================================================================= */
-
-.header {
-  background-color: #fff;
-}
-
-@media only screen and (max-width: 767px) {
-  .header_logo {
-    width: 150px;
-  }
-}
-
-/* ===========================================================================
-  headerNav
-============================================================================= */
-
-.headerNav {
-  width: 96%;
-  max-width: 1240px;
-  margin: 0 auto;
-  padding: 0 !important;
-  display: flex;
-  justify-content: space-between;
-}
-
-/* ===========================================================================
-  footer
-============================================================================= */
-
-.footer {
-  background-color: #333;
-  padding: 20px 0;
-}
-
-@media only screen and (max-width: 767px) {
-  .footer {
-    padding: 10px 0;
-  }
-}
-
-.footer_inner {
-  width: 96%;
-  max-width: 1240px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-@media only screen and (max-width: 1024px) {
-  .footer_inner {
-    width: calc(100% - 20px * 2);
-  }
-}
-
-@media only screen and (max-width: 767px) {
-  .footer_inner {
-    width: calc(100% - 15px * 2);
-  }
-}
-
-.footer_copy {
-  color: #fff;
-  font-size: 1.2rem;
-}
-
-@media only screen and (max-width: 767px) {
-  .footer_copy {
-    font-size: 1rem;
-  }
+select {
+  width: 100%;
+  padding-right: 25px !important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: url(/images/down-arrow.png?ff20e5480705ab75d491a1ad12cf16e5) #fff right 50% no-repeat !important;
+  background-size: 20px, 100% !important;
 }
 
 /* ===========================================================================
@@ -12302,7 +12318,7 @@ footer {
 }
 
 .c-blue {
-  color: #ff5757 !important;
+  color: #333 !important;
 }
 
 .mainVisual {
@@ -12311,7 +12327,6 @@ footer {
   justify-content: center;
   align-items: center;
   width: 100%;
-  background: url(/images/mainVisual.jpg?8e863f6e7c90b87584bc3bcdb1ba471f) no-repeat center/cover;
 }
 
 .mainText {
@@ -12361,7 +12376,7 @@ footer {
 
 .heading02,
 .heading02-02 {
-  color: #ff5757;
+  color: #333;
   font-size: 2.6rem;
   margin-bottom: 30px;
   text-align: center;
@@ -12529,7 +12544,14 @@ footer {
 .btn-02,
 .btn-03,
 .btn-02-s {
-  font-size: 1.4rem !important;
+  padding: 5px 10px;
+  color: #fff !important;
+  font-size: 1.4rem;
+  text-align: center;
+  border: none;
+  background: #53626F;
+  border-radius: 4px;
+  outline: none;
 }
 
 .btn-01,
@@ -12541,8 +12563,8 @@ footer {
   padding: 15px 10px;
   border-radius: 10px;
   margin: 0 auto;
-  border: 1px solid #ff5757;
-  color: #ff5757;
+  border: 1px solid #333;
+  color: #333;
 }
 
 .btn-01:hover,
@@ -12550,7 +12572,7 @@ footer {
 .btn-03:hover,
 .btn-02-s:hover {
   color: #fff;
-  background-color: #ff5757;
+  background-color: #333;
   transition: 0.2s;
 }
 
@@ -12563,7 +12585,7 @@ footer {
   border-radius: 10px;
   margin: 0 auto;
   color: #fff;
-  background-color: #ff5757;
+  background-color: #333;
   border: none;
 }
 
@@ -12650,20 +12672,58 @@ footer {
   }
 }
 
+.table-01 > thead > tr > th {
+  padding: 5px;
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid #ccc;
+  background: #efefef;
+}
+
 .table-01 > tbody > tr {
   border-bottom: 1px dotted #dcdcdc;
 }
 
 .table-01 > tbody > tr > th,
 .table-01 > tbody > tr td {
-  padding: 15px 10px;
+  padding: 5px;
 }
 
 .table-01 > tbody > tr > th {
   width: 30%;
 }
 
+.table-01 > tbody > tr:hover {
+  background-color: aliceblue;
+}
+
 .navbar-nav {
   flex-direction: row;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  height: calc(1.75em + 0.75rem + 2px) !important;
+  padding: 0.375rem 0.75rem;
+  font-size: 1.4rem;
+  font-weight: normal;
+  line-height: 1.75;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.row > [class*=col-] {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.row {
+  margin-right: 0px;
+  margin-left: 0px;
 }
 

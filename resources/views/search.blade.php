@@ -1,12 +1,20 @@
 {{ Form::open(['method' => 'get']) }}
     {{ csrf_field() }}
-    <div class='form-group'>
-        {{ Form::label('keyword', '検索キーワードを入力して下さい') }}
-        <p class="fz-s c-red">※アーティスト名、アルバム名、コメントでの検索となります。</p>
-        {{ Form::text('keyword', null, ['class' => 'form-control']) }}
+    <div class="row">
+      <div class='form-group'>
+          <input class="form-control" placeholder="フリーワード" name="keyword" type="text" value="">
+      </div>
+        <div class='form-group col-2'>
+          <select class="form-control" name="seach_user">
+              <option value="">作成者</option>
+            @foreach($users as $user)
+              <option value="{{ $user }}">{{ $user }}</option>
+            @endforeach
+          </select>
+        </div>
     </div>
-    <div class='form-group'>
-        {{ Form::submit('検索', ['class' => 'btn btn-primary'])}}
-        <a href={{ route('projectlist.index') }} class="btn btn-danger ml-5 btn-sm">クリア</a>
+    <div class='form-group col-2'>
+        {{ Form::submit('検索', ['class' => 'btn'])}}
+        <a href={{ route('projectlist.index') }} class="btn ml-5">クリア</a>
     </div>
 {{ Form::close() }}

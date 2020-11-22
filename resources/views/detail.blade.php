@@ -8,19 +8,35 @@
 <table class="table-01">
         <tbody>
             <tr>
-                <th>アルバム名</th>
+                <th>作成日</th>
                 <td>{{ $projectlist->project_name }}</td>
             </tr>
             <tr>
-                <th>アーティスト名</th>
+                <th>営業部門</th>
                 <td>{{ $projectlist->department_name }}</td>
             </tr>
             <tr>
-                <th>コメント</th>
+                <th>営業担当</th>
                 <td>{{ $projectlist->price }}</td>
             </tr>
             <tr>
-                <th>ジャンル</th>
+                <th>クライアント名</th>
+                <td>{{ $projectlist->client_name }}</td>
+            </tr>
+            <tr>
+                <th>案件名</th>
+                <td>{{ $projectlist->project_name }}</td>
+            </tr>
+            <tr>
+                <th>作成者</th>
+                <td>{{ $projectlist->author_name }}</td>
+            </tr>
+            <tr>
+                <th>金額</th>
+                <td>{{ $projectlist->price }}</td>
+            </tr>
+            <tr>
+                <th>状態</th>
                 <td>{{ $projectlist->status }}</td>
             </tr>
         </tbody>

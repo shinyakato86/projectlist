@@ -10,7 +10,7 @@ b, i,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, figcaption, figure, 
+article, aside, canvas, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section, summary,
 time, mark, audio, video, a {
 	margin: 0;
@@ -23,7 +23,7 @@ time, mark, audio, video, a {
 }
 
 article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section, main { 
+footer, header, hgroup, menu, nav, section, main {
 	display: block;
 }
 
@@ -55,6 +55,9 @@ select {
 html {
 	font-size: 62.5%;
 	line-height: 1.68;
+	@include mq(l) {
+		font-size: 55%;
+	}
 }
 
 body {
@@ -66,7 +69,7 @@ body {
 	background: #f7f7f7;
 }
 
-img { 
+img {
 	max-width: 100%;
 	width: auto;
 	height: auto;
@@ -74,7 +77,7 @@ img {
 }
 
 // win7 IE11対応
-img[src$=".svg"] {	
+img[src$=".svg"] {
 	width: 100%;
 }
 
@@ -117,4 +120,14 @@ body {
 }
 footer {
 	margin-top: auto;
+}
+
+select {
+  width: 100%;
+  padding-right: 25px !important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: url(../images/down-arrow.png) #fff right 50% no-repeat !important;
+  background-size: 20px, 100% !important;
 }

@@ -5,11 +5,11 @@ Route::get('/projectlist', 'App\Http\Controllers\ProjectlistController@index')->
 
 Route::get('/review/new', 'App\Http\Controllers\ProjectlistController@create')->name('projectlist.new');
 Route::post('/review', 'App\Http\Controllers\ProjectlistController@store')->name('projectlist.store');
-Route::get('/review/edit/{id}', 'ShopController@edit')->name('projectlist.edit');
-Route::post('/review/update/{id}', 'ShopController@update')->name('shop.update');
+Route::get('/review/edit/{id}', 'App\Http\Controllers\ProjectlistController@edit')->name('projectlist.edit');
+Route::post('/review/update/{id}', 'App\Http\Controllers\ProjectlistController@update')->name('projectlist.update');
 
 Route::get('/review/{id}', 'App\Http\Controllers\ProjectlistController@show')->name('projectlist.detail');
-Route::delete('/review/{id}', 'ShopController@destroy')->name('projectlist.destroy');
+Route::delete('/review/{id}', 'App\Http\Controllers\ProjectlistController@destroy')->name('projectlist.destroy');
 
 
 

@@ -9,7 +9,7 @@
 
     <section class="section-review">
 
-    <table class="table-bordered table-hover table-checkbox" id="orderList">
+    <table class="table-bordered table-hover table-checkbox table-01">
       <thead>
         <tr>
           <th class="col-no">作成日</th>
