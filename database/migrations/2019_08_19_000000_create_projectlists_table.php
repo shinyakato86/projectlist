@@ -13,7 +13,7 @@ class CreateProjectlistsTable extends Migration
      */
     public function up()
     {
-        Schema::create('Projectlists', function (Blueprint $table) {
+        Schema::create('projectlists', function (Blueprint $table) {
             $table->increments('id');
             $table->string('department_name');
             $table->string('sales_name');
@@ -33,6 +33,6 @@ class CreateProjectlistsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Projectlists');
+        Schema::dropIfExists('projectlists');
     }
 }

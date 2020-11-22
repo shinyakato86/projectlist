@@ -15,10 +15,10 @@ class DepartmentsSeeder extends Seeder
     public function run()
     {
       DB::table('departments')->insert([
-          ['department_name' => 'ディレクション'],
-          ['department_name' => 'デザイン'],
-          ['department_name' => 'Webサイト構築・ページ制作'],
-          ['department_name' => 'テスト・デバッグ'],
+          ['department_name' => '営業部門A'],
+          ['department_name' => '営業部門B'],
+          ['department_name' => '営業部門C'],
+          ['department_name' => '営業部門D'],
       ]);
     }
 }

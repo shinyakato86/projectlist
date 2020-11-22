@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCreatorsTable extends Migration
+class CreateClientsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateCreatorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('creators', function (Blueprint $table) {
-            $table->integer('id');
-            $table->string('creator_name');
-            $table->integer('creator_price');
-            $table->string('creator_category');
+        Schema::create('clients', function (Blueprint $table) {
+            $table->id();
+            $table->string('client_name');
         });
     }
 
@@ -28,6 +26,6 @@ class CreateCreatorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('creators');
+        Schema::dropIfExists('clients');
     }
 }

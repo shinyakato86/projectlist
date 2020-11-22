@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Projectlist;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProjectlistController extends Controller
 {
@@ -22,15 +23,15 @@ class ProjectlistController extends Controller
     {
         if ($request->filled('keyword')) {
             $keyword = $request->input('keyword');
-            $projectlists = Projectlist::where('name', 'like', '%' . $keyword . '%')
+            $projectlist = Projectlist::where('name', 'like', '%' . $keyword . '%')
             ->orWhere('address', 'like', '%' . $keyword . '%')
             ->orWhere('coment', 'like', '%' . $keyword . '%')
             ->get();
         } else {
-            $projectlists = Projectlist::all();
+            $projectlist = Projectlist::all();
         }
 
-        return view('show', ['projectlists' => $projectlists]);
+        return view('show', ['projectlist' => $projectlist]);
     }
 
     /**
@@ -40,8 +41,20 @@ class ProjectlistController extends Controller
      */
     public function create()
     {
-        $projectlists = new Projectlist;
-        return view('new', ['projectlists' => $projectlists]);
+        $projectlist = new Projectlist;
+
+        $categories = \DB::table('categories')->pluck('category_name');
+
+        $users = \DB::table('users')->pluck('name');
+
+        $departments = \DB::table('departments')->pluck('department_name');
+
+        $status = \DB::table('status')->pluck('status_name');
+
+        $clients = \DB::table('clients')->pluck('client_name');
+
+        return view('new', compact('projectlist', 'categories', 'users', 'departments', 'status', 'clients'));
+
     }
 
     /**
@@ -50,19 +63,35 @@ class ProjectlistController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-public function store(Request $request)
-{
-    $shop = new Shop;
-    $user = \Auth::user();
+    public function store(Request $request)
+    {
+        $projectlist = new Projectlist;
+        $user = \Auth::user();
 
-    $shop->name = request('name');
-    $shop->address = request('address');
-    $shop->coment = request('coment');
-    $shop->category_id = request('category_id');
-    $shop->user_id = $user->id;
-    $shop->save();
-    return redirect()->route('shop.detail', ['id' => $shop->id]);
-}
+        $projectlist->project_name = request('project_name');
+        $projectlist->department_name = request('department_name');
+        $projectlist->sales_name = request('sales_name');
+        $projectlist->client_name = request('client_name');
+        $projectlist->price = request('price');
+        $projectlist->status = request('status');
+        $projectlist->author_name = $user->name;
+        $projectlist->save();
+
+        $data = [];
+
+        for ($i=0; $i < count(request('creator_name')); $i++) {
+
+          $data[]= array ('creator_name'=>$request['creator_name'][$i],
+                          'id'=>$projectlist->id,
+                          'creator_price'=>$request['creator_price'][$i],
+                          'creator_category'=>$request['creator_category'][$i]);
+
+        }
+
+        DB::table('creators')->insert($data);
+
+        return redirect()->route('projectlist.detail', ['id' => $projectlist->id]);
+    }
 
     /**
      * Display the specified resource.
@@ -72,7 +101,7 @@ public function store(Request $request)
      */
     public function show($id)
     {
-        $shop = Shop::find($id);
+        $projectlist = Projectlist::find($id);
         $user = \Auth::user();
         if ($user) {
             $login_user_id = $user->id;
@@ -80,7 +109,7 @@ public function store(Request $request)
             $login_user_id = "";
         }
 
-        return view('show', ['shop' => $shop, 'login_user_id' => $login_user_id]);
+        return view('detail', ['projectlist' => $projectlist, 'login_user_id' => $login_user_id]);
     }
 
     /**
