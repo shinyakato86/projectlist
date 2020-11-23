@@ -60,7 +60,7 @@
               <div class="help-block with-errors font-s"></div>
             </div>
             <div class="col-2 form-group" id="anken">
-                <select class="form-control data_section_sales_staff show_requiredlike" name="status">
+                <select class="form-control data_section_sales_staff show_requiredlike" name="status" required>
                   @foreach($status as $value3)
                     @if ($value3 === $projectlist->status)
                       <option value="{{ $value3 }}" selected="selected">{{ $value3 }}</option>
@@ -99,7 +99,7 @@
                       <div class="itemList">
                         <div class="item-group row align-items-start">
                           <div class="form-group col-2">
-                              <select class="form-control data_section_sales_staff" name="creator_name[]">
+                              <select class="form-control data_section_sales_staff" name="creator_name[]" required>
                       <option value="">作業者</option>
                       @foreach($users as $value1)
                         @if ($value1 === $creator->creator_name)
@@ -113,11 +113,11 @@
 
                           <div class="form-group col-4">
                             <label>売上：</label>
-                            <input class="form-control mr-3" type="text" name="creator_price[]" value="{{ $creator->creator_price }}">円
+                            <input class="form-control mr-3" type="text" name="creator_price[]" value="{{ $creator->creator_price }}" required>円
                           </div>
 
                           <div class="form-group col-3">
-                            <select class="form-control" name="creator_category[]">
+                            <select class="form-control" name="creator_category[]" required>
                               <option value="">カテゴリ</option>
                               @foreach($categories as $value2)
                                 @if ($value2 === $creator->creator_category)

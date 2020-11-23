@@ -11,7 +11,7 @@ Route::post('/review/update/{id}', 'App\Http\Controllers\ProjectlistController@u
 Route::get('/review/{id}', 'App\Http\Controllers\ProjectlistController@show')->name('projectlist.detail');
 Route::delete('/review/{id}', 'App\Http\Controllers\ProjectlistController@destroy')->name('projectlist.destroy');
 
-
+Route::get('/sales_client', 'App\Http\Controllers\SalesController@sales_client')->name('sales.client');
 
 Auth::routes();
 

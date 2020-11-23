@@ -15,7 +15,7 @@
             <label>●クライアント情報</label>
           </div>
           <div class="col-6 form-group" id="client_name">
-            <select class="form-control data_section_sales_staff show_requiredlike" name="client_name">
+            <select class="form-control data_section_sales_staff show_requiredlike" name="client_name" required>
               <option value="">クライアント</option>
             @foreach($clients as $client)
               <option value="{{ $client }}">{{ $client }}</option>
@@ -30,7 +30,7 @@
             <label>●発注元営業部門情報</label>
           </div>
           <div class="col-5 form-group">
-            <select class="form-control data_section_sales_staff show_requiredlike" name="department_name">
+            <select class="form-control data_section_sales_staff show_requiredlike" name="department_name" required>
               <option value="">---</option>
               @foreach($departments as $department)
                 <option value="{{ $department }}">{{ $department }}</option>
@@ -54,7 +54,7 @@
             <div class="help-block with-errors font-s"></div>
           </div>
           <div class="col-2 form-group">
-              <select class="form-control data_section_sales_staff show_requiredlike" name="status">
+              <select class="form-control data_section_sales_staff show_requiredlike" name="status" required>
                 <option value="">状態</option>
                   @foreach($status as $value)
                     <option value="{{ $value }}">{{ $value }}</option>
@@ -131,7 +131,7 @@
                             <div class="itemList">
                               <div class="item-group row align-items-start">
                                 <div class="form-group col-2">
-        														<select class="form-control data_section_sales_staff show_requiredlike" name="creator_name[]">
+        														<select class="form-control data_section_sales_staff show_requiredlike" name="creator_name[]" required>
         										<option value="">作業者</option>
                             @foreach($users as $user)
                               <option value="{{ $user }}">{{ $user }}</option>
@@ -141,11 +141,11 @@
 
                                 <div class="form-group col-4">
                                   <label>売上：</label>
-                                  <input class="bunpai numeral yen form-control show_requiredlike mr-3" type="text" name="creator_price[]" value="">円
+                                  <input class="bunpai numeral yen form-control show_requiredlike mr-3" type="text" name="creator_price[]" value="" required>円
                                 </div>
 
                                 <div class="form-group col-3">
-                                  <select class="form-control show_requiredlike" name="creator_category[]">
+                                  <select class="form-control show_requiredlike" name="creator_category[]" required>
                                     <option value="">カテゴリ</option>
                                     @foreach($categories as $category)
                                       <option value="{{ $category }}">{{ $category }}</option>
