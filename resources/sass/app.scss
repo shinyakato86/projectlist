@@ -43,6 +43,16 @@
 }
 
 // ===========================================================================
+//  heading03
+// ============================================================================
+.heading03 {
+    color: $color-main;
+    font-size: 2.2rem;
+    margin: 35px 0 30px 0;
+    text-align: center;
+}
+
+// ===========================================================================
 //  section
 // ============================================================================
 .section {
@@ -152,6 +162,9 @@
             }
             >th {
                 width: 30%;
+                background: #efefef;
+                text-align: center;
+                border-right: 1px dotted #dcdcdc;
             }
             &:hover {
               background-color: aliceblue;
@@ -160,6 +173,72 @@
     }
 }
 
+.table-02 {
+  border: 1px dotted #dcdcdc;
+    > thead {
+        > tr {
+          > th {
+            padding: 5px;
+            text-align: center;
+            vertical-align: middle;
+            border: 1px solid #ccc;
+            background: #efefef;
+          }
+        }
+      }
+    > tbody {
+        > tr {
+            border-bottom: 1px dotted #dcdcdc;
+            > th, td {
+                padding: 10px 10px;
+            }
+            >th {
+                width: 30%;
+                background: #efefef;
+                text-align: center;
+                border-right: 1px dotted #dcdcdc;
+            }
+            &:last-of-type {
+              border-bottom: none;
+            }
+        }
+    }
+}
+
+.table-03 {
+  border: 1px dotted #dcdcdc;
+  & + & {
+    margin-top: 25px;
+  }
+    > thead {
+        > tr {
+          > th {
+            padding: 5px;
+            text-align: center;
+            vertical-align: middle;
+            border: 1px solid #ccc;
+            background: #efefef;
+          }
+        }
+      }
+    > tbody {
+        > tr {
+            border-bottom: 1px dotted #dcdcdc;
+            > th, td {
+                padding: 10px 10px;
+            }
+            >th {
+                width: 30%;
+                background: #efefef;
+                text-align: center;
+                border-right: 1px dotted #dcdcdc;
+            }
+            &:last-of-type {
+              border-bottom: none;
+            }
+        }
+    }
+}
 // ===========================================================================
 //  .navbar-nav
 // ============================================================================

@@ -107,14 +107,10 @@ class ProjectlistController extends Controller
     public function show($id)
     {
         $projectlist = Projectlist::find($id);
-        $user = \Auth::user();
-        if ($user) {
-            $login_user_id = $user->id;
-        } else {
-            $login_user_id = "";
-        }
 
-        return view('detail', ['projectlist' => $projectlist, 'login_user_id' => $login_user_id]);
+        $creators = Creators::all()->where('id',$id);
+
+        return view('detail', compact('projectlist', 'creators'));
     }
 
     /**

@@ -12344,6 +12344,13 @@ select {
   color: #004aad;
 }
 
+.heading03 {
+  color: #333;
+  font-size: 2.2rem;
+  margin: 35px 0 30px 0;
+  text-align: center;
+}
+
 .section {
   margin-top: 60px;
 }
@@ -12464,10 +12471,81 @@ select {
 
 .table-01 > tbody > tr > th {
   width: 30%;
+  background: #efefef;
+  text-align: center;
+  border-right: 1px dotted #dcdcdc;
 }
 
 .table-01 > tbody > tr:hover {
   background-color: aliceblue;
+}
+
+.table-02 {
+  border: 1px dotted #dcdcdc;
+}
+
+.table-02 > thead > tr > th {
+  padding: 5px;
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid #ccc;
+  background: #efefef;
+}
+
+.table-02 > tbody > tr {
+  border-bottom: 1px dotted #dcdcdc;
+}
+
+.table-02 > tbody > tr > th,
+.table-02 > tbody > tr td {
+  padding: 10px 10px;
+}
+
+.table-02 > tbody > tr > th {
+  width: 30%;
+  background: #efefef;
+  text-align: center;
+  border-right: 1px dotted #dcdcdc;
+}
+
+.table-02 > tbody > tr:last-of-type {
+  border-bottom: none;
+}
+
+.table-03 {
+  border: 1px dotted #dcdcdc;
+}
+
+.table-03 + .table-03 {
+  margin-top: 25px;
+}
+
+.table-03 > thead > tr > th {
+  padding: 5px;
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid #ccc;
+  background: #efefef;
+}
+
+.table-03 > tbody > tr {
+  border-bottom: 1px dotted #dcdcdc;
+}
+
+.table-03 > tbody > tr > th,
+.table-03 > tbody > tr td {
+  padding: 10px 10px;
+}
+
+.table-03 > tbody > tr > th {
+  width: 30%;
+  background: #efefef;
+  text-align: center;
+  border-right: 1px dotted #dcdcdc;
+}
+
+.table-03 > tbody > tr:last-of-type {
+  border-bottom: none;
 }
 
 .navbar-nav {

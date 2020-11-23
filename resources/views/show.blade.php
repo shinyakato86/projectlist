@@ -4,11 +4,11 @@
 
     <div class="contentsArea">
       <section class="section">
-        <h2 class="heading02">投稿一覧</h2>
+        <h2 class="heading02">受注案件一覧</h2>
 
         @include('search')
 
-        <table class="table-bordered table-hover table-checkbox table-01">
+        <table class="table-bordered table-hover table-01 mt-5">
           <thead>
             <tr>
               <th class="col-no">作成日</th>
@@ -31,7 +31,7 @@
               <td>{{ $projectlist->client_name }}</td>
               <td>{{ $projectlist->project_name }}</td>
               <td>{{ $projectlist->author_name }}</td>
-              <td>{{ $projectlist->price }}</td>
+              <td>{{ number_format($projectlist->price) }}</td>
               <td>{{ $projectlist->status }}</td>
               <td><a href={{ route('projectlist.detail', ['id' =>  $projectlist->id]) }} class="btn-02-s">詳細</a></td>
             </tr>
