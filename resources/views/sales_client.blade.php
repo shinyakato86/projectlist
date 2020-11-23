@@ -8,9 +8,9 @@
 
 
 
-        @foreach($sales_client as $key)
-                    {{ print_r($key) }}
-        @endforeach
+
+                    {{ print_r($sales_client) }}
+
 
 
 
