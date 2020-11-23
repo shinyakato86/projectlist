@@ -11,13 +11,16 @@
     <div class="section bg-w">
       <div class="content-inner">
         <div class="row mb-3 align-items-start">
-          <div class="col-6 form-group" id="client_name">
+          <div class="col-10">
             <label>●クライアント情報</label>
-            <input class="form-control ui-autocomplete-input" id="client_company" name="client_name" placeholder="クライアント" value="" required="" data-error="※入力必須です" autocomplete="off">
-            <div class="help-block with-errors font-s"></div>
-            <input type="hidden" name="client_uid" value="">
-            <input type="hidden" name="client_category_01" value="">
-            <input type="hidden" name="client_category_02" value="">
+          </div>
+          <div class="col-6 form-group" id="client_name">
+            <select class="form-control data_section_sales_staff show_requiredlike" name="client_name">
+              <option value="">クライアント</option>
+            @foreach($clients as $client)
+              <option value="{{ $client }}">{{ $client }}</option>
+            @endforeach
+            </select>
           </div>
           <div class="col-4">
           </div>
@@ -35,9 +38,6 @@
             </select>
             <div class="help-block with-errors font-s"></div>
           </div>
-          <div class="col-5 form-group">
-            <div class="help-block with-errors font-s"></div>
-          </div>
           <div class="col-2 form-group">
             <div class="honorific">
               <input class="form-control" type="text" name="sales_name" placeholder="担当者" value="" required="" data-error="※入力必須です">
@@ -46,31 +46,33 @@
           </div>
         </div>
         <div class="row mb-3 align-items-start">
+          <div class="col-12">
+          <label>●案件名</label>
+          </div>
           <div class="col-10 form-group">
-            <label>●案件名</label>
             <input class="form-control" type="text" name="project_name" value="" required="" data-error="※入力必須です">
             <div class="help-block with-errors font-s"></div>
           </div>
           <div class="col-2 form-group">
-            <div class="honorific">
               <select class="form-control data_section_sales_staff show_requiredlike" name="status">
                 <option value="">状態</option>
                   @foreach($status as $value)
                     <option value="{{ $value }}">{{ $value }}</option>
                   @endforeach
               </select>
-            </div>
             <div class="help-block with-errors font-s"></div>
           </div>
         </div>
 											<input type="hidden" name="media" value="not use">
 
-        <div class="form-group row">
-          <div class="col-4">
+        <div class="row">
+          <div class="col-12">
             <label>●売上額</label>
-            <input class="form-control t-right numeral yen font-l" id="ju_uriage" type="text" name="price" value="" required="">円
-            <div class="help-block with-errors font-s"></div>
           </div>
+          <div class="col-5 form-group">
+            <input class="form-control t-right numeral yen font-l mr-3" id="ju_uriage" type="text" name="price" value="" required="">円
+            <div class="help-block with-errors font-s"></div>
+        </div>
         </div>
       </div>
     </div>
@@ -117,7 +119,7 @@
         </div>-->
 
 
-        <div class="mt30 bg-w" id="data_section_sales">
+        <div class="mt-5 bg-w" id="data_section_sales">
           <div class="content-inner">
             <div class="row">
               <label class="col-3">●売上分配</label>
@@ -137,9 +139,9 @@
                               </select>
                                 </div>
 
-                                <div class="form-group col-3">
+                                <div class="form-group col-4">
                                   <label>売上：</label>
-                                  <input class="bunpai numeral yen form-control show_requiredlike" type="text" name="creator_price[]" value="">円
+                                  <input class="bunpai numeral yen form-control show_requiredlike mr-3" type="text" name="creator_price[]" value="">円
                                 </div>
 
                                 <div class="form-group col-3">
@@ -150,11 +152,11 @@
                                     @endforeach
                                   </select>
                                 </div>
-                                <button class="remove_line" type="button"><span>行を削除</span></button><span class="unitPriceTime"></span>
+                                <button class="btn my-auto remove_line" type="button">行を削除</button><span class="unitPriceTime"></span>
         																						</div>
                             </div>
-                            <div class="btns">
-                              <button class="add_item" type="button">項目を追加する</button>
+                            <div class="row pl-3">
+                              <button class="add_item btn" type="button">項目を追加する</button>
                             </div>
 														</div>
 												</div>
@@ -163,13 +165,13 @@
                   </div>
 
 
-        <div class="form-group">
+        <div class="form-group mt-5">
             {{ Form::submit('作成する', ['class' => 'btn-03']) }}
         </div>
     {{ Form::close() }}
     </div>
-    <div>
-        <a href={{ route('projectlist.index') }} class="btn btn-secondary mt20">一覧に戻る</a>
+    <div class="pl-3 mt-5">
+        <a href={{ route('projectlist.index') }} class="btn btn-secondary">一覧に戻る</a>
     </div>
     </div>
     <section>

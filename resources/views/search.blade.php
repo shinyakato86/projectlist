@@ -4,7 +4,7 @@
       <div class='form-group'>
           <input class="form-control" placeholder="フリーワード" name="keyword" type="text" value="">
       </div>
-        <div class='form-group col-2'>
+        <div class='form-group col-3'>
           <select class="form-control" name="seach_user">
               <option value="">作成者</option>
             @foreach($users as $user)
@@ -13,8 +13,8 @@
           </select>
         </div>
     </div>
-    <div class='form-group col-2'>
-        {{ Form::submit('検索', ['class' => 'btn'])}}
-        <a href={{ route('projectlist.index') }} class="btn ml-5">クリア</a>
+    <div class='form-group'>
+        <a href={{ route('projectlist.index') }} class="btn">クリア</a>
+        {{ Form::submit('検索', ['class' => 'btn ml-3'])}}
     </div>
 {{ Form::close() }}

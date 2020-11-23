@@ -52,14 +52,15 @@
             </div>
           </div>
           <div class="row mb-3 align-items-start">
+            <div class="col-12">
+            <label>●案件名</label>
+            </div>
             <div class="col-10 form-group">
-              <label>●案件名</label>
               <input class="form-control" type="text" name="project_name" value="{{ $projectlist->project_name }}" required="" data-error="※入力必須です">
               <div class="help-block with-errors font-s"></div>
             </div>
-            <div class="col-2" id="anken">
-                <label>●状態</label>
-                <select class="form-control" name="status">
+            <div class="col-2 form-group" id="anken">
+                <select class="form-control data_section_sales_staff show_requiredlike" name="status">
                   @foreach($status as $value3)
                     @if ($value3 === $projectlist->status)
                       <option value="{{ $value3 }}" selected="selected">{{ $value3 }}</option>
@@ -70,10 +71,12 @@
                 </select>
             </div>
           </div>
-          <div class="form-group row">
-            <div class="col-4">
+          <div class="row">
+            <div class="col-12">
               <label>●売上額</label>
-              <input class="form-control t-right numeral yen font-l" id="ju_uriage" type="text" name="price" value="{{ $projectlist->price }}" required="">円
+            </div>
+            <div class="col-5 form-group">
+              <input class="form-control t-right numeral yen font-l mr-3" id="ju_uriage" type="text" name="price" value="{{ $projectlist->price }}" required="">円
               <div class="help-block with-errors font-s"></div>
             </div>
 
@@ -89,14 +92,14 @@
                     <div class="help-block with-errors font-s"></div>
 
 
-                    <article class="sales_accordion_art" area="中日本" section="制作1部">
+                    <article class="sales_accordion_art">
                   <div class="accodion" data-event="accordion">
                     <div class="acc-content">
                     @foreach($creators as $creator)
                       <div class="itemList">
                         <div class="item-group row align-items-start">
                           <div class="form-group col-2">
-                              <select class="form-control data_section_sales_staff show_requiredlike" name="creator_name[]">
+                              <select class="form-control data_section_sales_staff" name="creator_name[]">
                       <option value="">作業者</option>
                       @foreach($users as $value1)
                         @if ($value1 === $creator->creator_name)
@@ -108,13 +111,13 @@
                         </select>
                           </div>
 
-                          <div class="form-group col-3">
+                          <div class="form-group col-4">
                             <label>売上：</label>
-                            <input class="bunpai numeral yen form-control show_requiredlike" type="text" name="creator_price[]" value="{{ $creator->creator_price }}">円
+                            <input class="form-control mr-3" type="text" name="creator_price[]" value="{{ $creator->creator_price }}">円
                           </div>
 
                           <div class="form-group col-3">
-                            <select class="form-control show_requiredlike" name="creator_category[]">
+                            <select class="form-control" name="creator_category[]">
                               <option value="">カテゴリ</option>
                               @foreach($categories as $value2)
                                 @if ($value2 === $creator->creator_category)
@@ -125,12 +128,12 @@
                               @endforeach
                             </select>
                           </div>
-                          <button class="remove_line" type="button"><span>行を削除</span></button><span class="unitPriceTime"></span>
-                                              </div>
+                          <button class="btn my-auto remove_line" type="button">行を削除</button>
+                        </div>
                       </div>
             @endforeach
-                      <div class="btns">
-                        <button class="add_item" type="button">項目を追加する</button>
+                      <div class="row pl-3">
+                        <button class="add_item btn" type="button">項目を追加する</button>
                       </div>
                       </div>
                   </div>
@@ -138,12 +141,12 @@
               </div>
             </div>
 
-        <div class="form-group">
-            {{ Form::submit('作成する', ['class' => 'btn-03']) }}
+        <div class="form-group mt-5">
+            {{ Form::submit('更新する', ['class' => 'btn-03']) }}
         </div>
     {{ Form::close() }}
     </div>
-    <div>
+    <div class="mt-5">
         <a href={{ route('projectlist.index') }} class="btn btn-secondary mt20">一覧に戻る</a>
     </div>
     </div>
