@@ -13,6 +13,8 @@ Route::delete('/review/{id}', 'App\Http\Controllers\ProjectlistController@destro
 
 Route::get('/sales_client', 'App\Http\Controllers\SalesController@sales_client')->name('sales.client');
 
+Route::get('/sales_personal', 'App\Http\Controllers\SalesController@sales_personal')->name('sales.personal');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

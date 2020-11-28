@@ -36,6 +36,8 @@ class ProjectlistController extends Controller
         }else{
             $projectlist = Projectlist::all();
           }
+
+
         return view('show', compact('projectlist', 'users'));
     }
 
