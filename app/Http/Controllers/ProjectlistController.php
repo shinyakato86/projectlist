@@ -103,7 +103,9 @@ class ProjectlistController extends Controller
 
         $clients = \DB::table('clients')->pluck('client_name');
 
-        return view('new', compact('projectlist', 'categories', 'users', 'departments', 'status', 'clients'));
+        $today = new Carbon(Carbon::now());
+
+        return view('new', compact('projectlist', 'categories', 'users', 'departments', 'status', 'clients', 'today'));
 
     }
 
@@ -124,6 +126,7 @@ class ProjectlistController extends Controller
         $projectlist->client_name = request('client_name');
         $projectlist->price = request('price');
         $projectlist->status = request('status');
+        $projectlist->accounting_date = request('accounting_date');
         $projectlist->author_name = $user->name;
         $projectlist->save();
 
@@ -198,6 +201,7 @@ class ProjectlistController extends Controller
         $projectlist->client_name = request('client_name');
         $projectlist->price = request('price');
         $projectlist->status = request('status');
+        $projectlist->accounting_date = request('accounting_date');
         $projectlist->save();
 
         $old_creators = Creators::find($id);

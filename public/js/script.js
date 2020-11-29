@@ -40,4 +40,21 @@ $(function(){
    console.log('陦後�蜑企勁 -荳玖ｫ�');
   });
 
+
+  $(document).on("click",".submit",function(){
+         var total_sum = 0;
+         var bunpai_sum = 0;
+
+         $(".bunpai").each(function () {
+             var get_textbox_value = $(this).val();
+             if ($.isNumeric(get_textbox_value)) {
+                total_sum += parseFloat(get_textbox_value);
+                }
+              });
+                $("#total_sum_value").html(calculated_total_sum);
+         });
+
+
+
+
 });

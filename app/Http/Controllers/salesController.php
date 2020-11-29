@@ -21,16 +21,16 @@ class SalesController extends Controller
         $keyword = $request->input('seach_year');
         $keyword2 = $request->input('seach_month');
 
-        $sales_personal  = \DB::table('projectlists')->join('creators', 'projectlists.id', '=', 'creators.id')->selectRaw('creator_name , sum(creator_price) as amount, updated_at')->whereYear('updated_at', $keyword)->whereMonth('updated_at', $keyword2)->groupByRaw('creator_name')->get();
+        $sales_personal  = \DB::table('projectlists')->join('creators', 'projectlists.id', '=', 'creators.id')->selectRaw('creator_name , sum(creator_price) as amount, accounting_date')->whereYear('accounting_date', $keyword)->whereMonth('accounting_date', $keyword2)->groupByRaw('creator_name')->get();
       }else if ($request->filled('seach_year')) {
 
         $keyword = $request->input('seach_year');
 
-        $sales_personal  = \DB::table('projectlists')->join('creators', 'projectlists.id', '=', 'creators.id')->selectRaw('creator_name , sum(creator_price) as amount, updated_at')->whereYear('updated_at', $keyword)->groupByRaw('creator_name')->get();
+        $sales_personal  = \DB::table('projectlists')->join('creators', 'projectlists.id', '=', 'creators.id')->selectRaw('creator_name , sum(creator_price) as amount, accounting_date')->whereYear('accounting_date', $keyword)->groupByRaw('creator_name')->get();
 
       }else{
 
-        $sales_personal = \DB::table('projectlists')->join('creators', 'projectlists.id', '=', 'creators.id')->selectRaw('creator_name , sum(creator_price) as amount, updated_at')->whereYear('updated_at', $year)->whereMonth('updated_at', $month)->groupByRaw('creator_name')->get();
+        $sales_personal = \DB::table('projectlists')->join('creators', 'projectlists.id', '=', 'creators.id')->selectRaw('creator_name , sum(creator_price) as amount, accounting_date')->whereYear('accounting_date', $year)->whereMonth('accounting_date', $month)->groupByRaw('creator_name')->get();
 
         }
 
@@ -54,16 +54,16 @@ class SalesController extends Controller
         $keyword = $request->input('seach_year');
         $keyword2 = $request->input('seach_month');
 
-        $sales_client = \DB::table('projectlists')->selectRaw('client_name , sum(price) as amount, updated_at')->whereYear('updated_at', $keyword)->whereMonth('updated_at', $keyword2)->groupByRaw('client_name')->get();
+        $sales_client = \DB::table('projectlists')->selectRaw('client_name , sum(price) as amount, accounting_date')->whereYear('accounting_date', $keyword)->whereMonth('accounting_date', $keyword2)->groupByRaw('client_name')->get();
       }else if ($request->filled('seach_year')) {
 
         $keyword = $request->input('seach_year');
 
-        $sales_client = \DB::table('projectlists')->selectRaw('client_name , sum(price) as amount, updated_at')->whereYear('updated_at', $keyword)->groupByRaw('client_name')->get();
+        $sales_client = \DB::table('projectlists')->selectRaw('client_name , sum(price) as amount, accounting_date')->whereYear('accounting_date', $keyword)->groupByRaw('client_name')->get();
 
       }else{
 
-        $sales_client = \DB::table('projectlists')->selectRaw('client_name , sum(price) as amount, updated_at')->whereYear('updated_at', $year)->whereMonth('updated_at', $month)->groupByRaw('client_name')->get();
+        $sales_client = \DB::table('projectlists')->selectRaw('client_name , sum(price) as amount, accounting_date')->whereYear('accounting_date', $year)->whereMonth('accounting_date', $month)->groupByRaw('client_name')->get();
 
       }
 
@@ -86,16 +86,16 @@ class SalesController extends Controller
         $keyword = $request->input('seach_year');
         $keyword2 = $request->input('seach_month');
 
-        $sales_category = \DB::table('projectlists')->join('creators', 'projectlists.id', '=', 'creators.id')->selectRaw('creator_category , sum(creator_price) as amount, updated_at')->whereYear('updated_at', $keyword)->whereMonth('updated_at', $keyword2)->groupByRaw('creator_category')->get();
+        $sales_category = \DB::table('projectlists')->join('creators', 'projectlists.id', '=', 'creators.id')->selectRaw('creator_category , sum(creator_price) as amount, accounting_date')->whereYear('accounting_date', $keyword)->whereMonth('accounting_date', $keyword2)->groupByRaw('creator_category')->get();
       }else if ($request->filled('seach_year')) {
 
         $keyword = $request->input('seach_year');
 
-        $sales_category = \DB::table('projectlists')->join('creators', 'projectlists.id', '=', 'creators.id')->selectRaw('creator_category , sum(creator_price) as amount, updated_at')->whereYear('updated_at', $keyword)->groupByRaw('creator_category')->get();
+        $sales_category = \DB::table('projectlists')->join('creators', 'projectlists.id', '=', 'creators.id')->selectRaw('creator_category , sum(creator_price) as amount, accounting_date')->whereYear('accounting_date', $keyword)->groupByRaw('creator_category')->get();
 
       }else{
 
-        $sales_category = \DB::table('projectlists')->join('creators', 'projectlists.id', '=', 'creators.id')->selectRaw('creator_category , sum(creator_price) as amount, updated_at')->whereYear('updated_at', $year)->whereMonth('updated_at', $month)->groupByRaw('creator_category')->get();
+        $sales_category = \DB::table('projectlists')->join('creators', 'projectlists.id', '=', 'creators.id')->selectRaw('creator_category , sum(creator_price) as amount, accounting_date')->whereYear('accounting_date', $year)->whereMonth('accounting_date', $month)->groupByRaw('creator_category')->get();
 
         }
 
@@ -119,16 +119,16 @@ class SalesController extends Controller
         $keyword = $request->input('seach_year');
         $keyword2 = $request->input('seach_month');
 
-        $sales_department = \DB::table('projectlists')->selectRaw('department_name , sum(price) as amount, updated_at')->whereYear('updated_at', $keyword)->whereMonth('updated_at', $keyword2)->groupByRaw('department_name')->get();
+        $sales_department = \DB::table('projectlists')->selectRaw('department_name , sum(price) as amount, accounting_date')->whereYear('accounting_date', $keyword)->whereMonth('accounting_date', $keyword2)->groupByRaw('department_name')->get();
       }else if ($request->filled('seach_year')) {
 
         $keyword = $request->input('seach_year');
 
-        $sales_department = \DB::table('projectlists')->selectRaw('department_name , sum(price) as amount, updated_at')->whereYear('updated_at', $keyword)->groupByRaw('department_name')->get();
+        $sales_department = \DB::table('projectlists')->selectRaw('department_name , sum(price) as amount, accounting_date')->whereYear('accounting_date', $keyword)->groupByRaw('department_name')->get();
 
       }else{
 
-        $sales_department = \DB::table('projectlists')->selectRaw('department_name , sum(price) as amount, updated_at')->whereYear('updated_at', $year)->whereMonth('updated_at', $month)->groupByRaw('department_name')->get();
+        $sales_department = \DB::table('projectlists')->selectRaw('department_name , sum(price) as amount, accounting_date')->whereYear('accounting_date', $year)->whereMonth('accounting_date', $month)->groupByRaw('department_name')->get();
 
         }
 

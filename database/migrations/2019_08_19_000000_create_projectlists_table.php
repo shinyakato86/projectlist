@@ -22,6 +22,7 @@ class CreateProjectlistsTable extends Migration
             $table->string('author_name');
             $table->integer('price');
             $table->string('status');
+            $table->date('accounting_date');
             $table->timestamps();
         });
     }

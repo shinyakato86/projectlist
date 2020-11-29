@@ -12,6 +12,14 @@
       <div class="content-inner">
         <div class="row mb-3 align-items-start">
           <div class="col-10">
+            <label>●計上日</label>
+          </div>
+          <div class="col-md-3 form-group">
+            {{ Form::date('accounting_date', \Carbon\Carbon::now(), ['class'=>'form-control']) }}
+          </div>
+        </div>
+        <div class="row mb-3 align-items-start">
+          <div class="col-10">
             <label>●クライアント情報</label>
           </div>
           <div class="col-md-6 form-group" id="client_name">

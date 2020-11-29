@@ -16,9 +16,11 @@ class CategoriesSeeder extends Seeder
     {
       DB::table('categories')->insert([
           ['category_name' => 'ディレクション'],
-          ['category_name' => 'デザイン'],
+          ['category_name' => 'デザイン（グラフィック）'],
+          ['category_name' => 'デザイン（デジタル）'],
           ['category_name' => 'Webサイト構築・ページ制作'],
-          ['category_name' => '撮影'],
+          ['category_name' => '動画撮影'],
+          ['category_name' => 'スチール撮影'],
       ]);
     }
 }

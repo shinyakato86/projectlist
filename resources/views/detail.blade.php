@@ -12,6 +12,10 @@
             <td>{{ $projectlist->created_at->format('Y/m/d') }}</td>
         </tr>
         <tr>
+            <th>計上月</th>
+            <td>{{ $projectlist->accounting_date->format('Y/m/d') }}</td>
+        </tr>
+        <tr>
             <th>営業部門</th>
             <td>{{ $projectlist->department_name }}</td>
         </tr>

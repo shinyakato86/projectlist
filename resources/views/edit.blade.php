@@ -11,6 +11,14 @@
     <div class="section bg-w">
         <div class="content-inner">
           <div class="row mb-3 align-items-start">
+            <div class="col-10">
+              <label>●計上日</label>
+            </div>
+            <div class="col-md-3 form-group">
+            {{ Form::date('accounting_date', $projectlist->accounting_date, ['class'=>'form-control']) }}
+            </div>
+          </div>
+          <div class="row mb-3 align-items-start">
             <div class="col-md-12">
               <label>●クライアント情報</label>
             </div>
