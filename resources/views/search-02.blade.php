@@ -1,7 +1,7 @@
 {{ Form::open(['method' => 'get']) }}
     {{ csrf_field() }}
     <div class="row">
-        <div class='form-group col-2'>
+        <div class='form-group pl-0'>
           <select class="form-control" name="seach_year">
               <option value="" selected>年</option>
               @for ($i=$year - 5; $i <= $year; $i++)
@@ -9,11 +9,11 @@
               @endfor
           </select>
         </div>
-        <div class='form-group col-2'>
+        <div class='form-group pl-0 ml-3'>
           <select class="form-control" name="seach_month">
               <option value="">月</option>
               @for ($i=1; $i <= 12; $i++)
-              <option value="{{ $i }}" @if($i == $month) selected="selected" @endif>{{ $i }}</option>
+              <option value="{{ $i }}" @if($i == $month) selected="selected" @endif>{{ $i }}月</option>
               @endfor
           </select>
         </div>

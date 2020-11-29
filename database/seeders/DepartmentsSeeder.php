@@ -19,6 +19,9 @@ class DepartmentsSeeder extends Seeder
           ['department_name' => '営業部門B'],
           ['department_name' => '営業部門C'],
           ['department_name' => '営業部門D'],
+          ['department_name' => '営業部門E'],
+          ['department_name' => '営業部門F'],
+          ['department_name' => '営業部門G'],
       ]);
     }
 }

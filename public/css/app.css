@@ -11196,8 +11196,8 @@ a.text-dark:focus {
 ============================================================================= */
 
 .headerNav {
-  width: 100%;
-  min-width: 1024px;
+  width: 92%;
+  max-width: 1024px;
   margin: 0 auto;
   padding: 0 !important;
   display: flex;
@@ -11211,6 +11211,7 @@ a.text-dark:focus {
 .footer {
   background-color: #333;
   padding: 20px 0;
+  margin-top: auto;
 }
 
 @media only screen and (max-width: 767px) {
@@ -11220,22 +11221,9 @@ a.text-dark:focus {
 }
 
 .footer_inner {
-  width: 94%;
-  max-width: 1240px;
+  max-width: 1024px;
   margin: 0 auto;
   text-align: center;
-}
-
-@media only screen and (max-width: 1024px) {
-  .footer_inner {
-    width: calc(100% - 20px * 2);
-  }
-}
-
-@media only screen and (max-width: 767px) {
-  .footer_inner {
-    width: calc(100% - 15px * 2);
-  }
 }
 
 .footer_copy {
@@ -11443,19 +11431,6 @@ body {
 
 body {
   min-height: 100vh;
-}
-
-header {
-  min-width: 1024px;
-  width: 100%;
-  padding: 0 3%;
-}
-
-footer {
-  min-width: 1024px;
-  width: 100%;
-  padding: 0 3%;
-  margin-top: auto;
 }
 
 select {
@@ -12325,10 +12300,10 @@ select {
 }
 
 .contentsArea {
-  width: 100%;
-  min-width: 1024px;
+  width: 92%;
+  max-width: 1024px;
   margin: 0 auto;
-  padding: 0 3% 100px 3%;
+  padding: 0 0 100px 0;
 }
 
 .heading02,
@@ -12427,7 +12402,8 @@ select {
 
 .btn-02-s {
   padding: 5px;
-  font-size: 1.2rem !important;
+  width: 100%;
+  font-size: 1rem !important;
 }
 
 .btn-03 {
@@ -12546,6 +12522,12 @@ select {
 
 .table-03 > tbody > tr:last-of-type {
   border-bottom: none;
+}
+
+.table-scroll {
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
 }
 
 .navbar-nav {

@@ -8,6 +8,7 @@ use Carbon\Carbon;
 
 class SalesController extends Controller
 {
+
     public function sales_personal(Request $request)
     {
 
@@ -15,47 +16,34 @@ class SalesController extends Controller
       $year =  $time ->__get('year');
       $month = $time ->__get('month');
 
+      if ($request->filled('seach_year') && $request->filled('seach_month')) {
 
-      if ($request->filled('keyword')) {
-          $keyword = $request->input('keyword');
-          $personallist = \DB::table('projectlists')->where('project_name', 'like', '%' . $keyword . '%')
-          ->orWhere('project_name', 'like', '%' . $keyword . '%')
-          ->get();
-      } elseif ($request->filled('seach_user')){
-          $seach_user = $request->input('seach_user');
-          $personallist = \DB::table('projectlists')->where('author_name',$seach_user);
+        $keyword = $request->input('seach_year');
+        $keyword2 = $request->input('seach_month');
+
+        $sales_personal  = \DB::table('projectlists')->join('creators', 'projectlists.id', '=', 'creators.id')->selectRaw('creator_name , sum(creator_price) as amount, updated_at')->whereYear('updated_at', $keyword)->whereMonth('updated_at', $keyword2)->groupByRaw('creator_name')->get();
+      }else if ($request->filled('seach_year')) {
+
+        $keyword = $request->input('seach_year');
+
+        $sales_personal  = \DB::table('projectlists')->join('creators', 'projectlists.id', '=', 'creators.id')->selectRaw('creator_name , sum(creator_price) as amount, updated_at')->whereYear('updated_at', $keyword)->groupByRaw('creator_name')->get();
+
       }else{
-          $personallist = \DB::table('projectlists');
+
+        $sales_personal = \DB::table('projectlists')->join('creators', 'projectlists.id', '=', 'creators.id')->selectRaw('creator_name , sum(creator_price) as amount, updated_at')->whereYear('updated_at', $year)->whereMonth('updated_at', $month)->groupByRaw('creator_name')->get();
+
         }
 
+        $error_text = "検索結果がありません。";
 
+        return view('sales_personal', compact('sales_personal', 'year', 'month', 'error_text'));
 
-
-
-        return view('sales_personal', compact('personallist', 'year'));
     }
 
 
 
     public function sales_client(Request $request)
     {
-      /*
-      $sales_client[] = \DB::table('projectlists')->
-      selectRaw('client_name,
-      sum(if (date_format(created_at, "%Y%m")=202001, price, 0)) as 1月,
-      sum(if (date_format(created_at, "%Y%m")=202002, price, 0)) as 2月,
-      sum(if (date_format(created_at, "%Y%m")=202002, price, 0)) as 3月,
-      sum(if (date_format(created_at, "%Y%m")=202002, price, 0)) as 4月,
-      sum(if (date_format(created_at, "%Y%m")=202002, price, 0)) as 5月,
-      sum(if (date_format(created_at, "%Y%m")=202002, price, 0)) as 6月,
-      sum(if (date_format(created_at, "%Y%m")=202002, price, 0)) as 7月,
-      sum(if (date_format(created_at, "%Y%m")=202002, price, 0)) as 8月,
-      sum(if (date_format(created_at, "%Y%m")=202002, price, 0)) as 9月,
-      sum(if (date_format(created_at, "%Y%m")=202002, price, 0)) as 10月,
-      sum(if (date_format(created_at, "%Y%m")=202002, price, 0)) as 11月,
-      sum(if (date_format(created_at, "%Y%m")=202002, price, 0)) as 12月')
-      ->groupByRaw('client_name')->get()->toArray();
-      */
 
       $time = new Carbon(Carbon::now());
       $year =  $time ->__get('year');
@@ -63,11 +51,10 @@ class SalesController extends Controller
 
       if ($request->filled('seach_year') && $request->filled('seach_month')) {
 
-          $keyword = $request->input('seach_year');
-          $keyword2 = $request->input('seach_month');
+        $keyword = $request->input('seach_year');
+        $keyword2 = $request->input('seach_month');
 
         $sales_client = \DB::table('projectlists')->selectRaw('client_name , sum(price) as amount, updated_at')->whereYear('updated_at', $keyword)->whereMonth('updated_at', $keyword2)->groupByRaw('client_name')->get();
-
       }else if ($request->filled('seach_year')) {
 
         $keyword = $request->input('seach_year');
@@ -75,43 +62,81 @@ class SalesController extends Controller
         $sales_client = \DB::table('projectlists')->selectRaw('client_name , sum(price) as amount, updated_at')->whereYear('updated_at', $keyword)->groupByRaw('client_name')->get();
 
       }else{
-        $sales_client = \DB::table('projectlists')->selectRaw('client_name , sum(price) as amount, updated_at')->whereYear('updated_at', $year)->groupByRaw('client_name')->get();
-        }
+
+        $sales_client = \DB::table('projectlists')->selectRaw('client_name , sum(price) as amount, updated_at')->whereYear('updated_at', $year)->whereMonth('updated_at', $month)->groupByRaw('client_name')->get();
+
+      }
 
         $error_text = "検索結果がありません。";
-
-  /*    SELECT 日時, 商品名, SUM(売上) FROM TABLE_A
-      GROUP BY DATE_FORMAT(日時, '%Y%m')
-            $sales_client = \DB::table('projectlists')->selectRaw('client_name , sum(price) as amount, updated_at')->groupByRaw('date_format(updated_at, "%Y%m"),client_name')->get();
-
-
-            if ($request->filled('keyword')) {
-                $keyword = $request->input('keyword');
-                $projectlist = Projectlist::where('project_name', 'like', '%' . $keyword . '%')
-                ->orWhere('project_name', 'like', '%' . $keyword . '%')
-                ->get();
-            } elseif ($request->filled('seach_user')){
-                $seach_user = $request->input('seach_user');
-                $projectlist = Projectlist::all()->where('author_name',$seach_user);
-            }else{
-                $projectlist = Projectlist::all();
-              }
-
-
-
-
-
-            */
-
 
         return view('sales_client', compact('sales_client', 'year', 'month', 'error_text'));
     }
 
 
 
+    public function sales_category(Request $request)
+    {
+
+      $time = new Carbon(Carbon::now());
+      $year =  $time ->__get('year');
+      $month = $time ->__get('month');
+
+      if ($request->filled('seach_year') && $request->filled('seach_month')) {
+
+        $keyword = $request->input('seach_year');
+        $keyword2 = $request->input('seach_month');
+
+        $sales_category = \DB::table('projectlists')->join('creators', 'projectlists.id', '=', 'creators.id')->selectRaw('creator_category , sum(creator_price) as amount, updated_at')->whereYear('updated_at', $keyword)->whereMonth('updated_at', $keyword2)->groupByRaw('creator_category')->get();
+      }else if ($request->filled('seach_year')) {
+
+        $keyword = $request->input('seach_year');
+
+        $sales_category = \DB::table('projectlists')->join('creators', 'projectlists.id', '=', 'creators.id')->selectRaw('creator_category , sum(creator_price) as amount, updated_at')->whereYear('updated_at', $keyword)->groupByRaw('creator_category')->get();
+
+      }else{
+
+        $sales_category = \DB::table('projectlists')->join('creators', 'projectlists.id', '=', 'creators.id')->selectRaw('creator_category , sum(creator_price) as amount, updated_at')->whereYear('updated_at', $year)->whereMonth('updated_at', $month)->groupByRaw('creator_category')->get();
+
+        }
+
+        $error_text = "検索結果がありません。";
+
+        return view('sales_category', compact('sales_category', 'year', 'month', 'error_text'));
+
+    }
 
 
 
+    public function sales_department(Request $request)
+    {
+
+      $time = new Carbon(Carbon::now());
+      $year =  $time ->__get('year');
+      $month = $time ->__get('month');
+
+      if ($request->filled('seach_year') && $request->filled('seach_month')) {
+
+        $keyword = $request->input('seach_year');
+        $keyword2 = $request->input('seach_month');
+
+        $sales_department = \DB::table('projectlists')->selectRaw('department_name , sum(price) as amount, updated_at')->whereYear('updated_at', $keyword)->whereMonth('updated_at', $keyword2)->groupByRaw('department_name')->get();
+      }else if ($request->filled('seach_year')) {
+
+        $keyword = $request->input('seach_year');
+
+        $sales_department = \DB::table('projectlists')->selectRaw('department_name , sum(price) as amount, updated_at')->whereYear('updated_at', $keyword)->groupByRaw('department_name')->get();
+
+      }else{
+
+        $sales_department = \DB::table('projectlists')->selectRaw('department_name , sum(price) as amount, updated_at')->whereYear('updated_at', $year)->whereMonth('updated_at', $month)->groupByRaw('department_name')->get();
+
+        }
+
+        $error_text = "検索結果がありません。";
+
+        return view('sales_department', compact('sales_department', 'year', 'month', 'error_text'));
+
+    }
 
 
 }

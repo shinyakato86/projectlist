@@ -4,7 +4,7 @@
 
 <div class="contentsArea">
   <section class="section">
-  <h2 class="heading02">月次売上（個人）</h2>
+  <h2 class="heading02">営業部門別売上</h2>
 
   @include('search-02')
   <table class="table-02 mt-5 mx-auto table-bordered">
@@ -16,14 +16,14 @@
     </thead>
     <tbody>
       <tr>
-      @foreach($sales_personal as $value)
-        <td>{{ $value->creator_name }}</td>
+      @foreach($sales_department as $value)
+        <td>{{ $value->department_name }}</td>
         <td class="text-center">{{ number_format($value->amount) }}円</td>
 
         </tr>
       @endforeach
 
-      @if($sales_personal->isEmpty())
+      @if($sales_department->isEmpty())
         {!! "<p style='color:red'>$error_text</p>"; !!}
       @endif
     </tbody>

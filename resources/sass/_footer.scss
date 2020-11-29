@@ -4,12 +4,14 @@
 .footer {
 	background-color: #333;
 	padding: 20px 0;
+	margin-top: auto;
 	@include mq(s) {
 		padding: 10px 0;
 	}
 }
 .footer_inner {
-	@include width-base($isBig: true);
+	max-width: $width_max;
+	margin: 0 auto;
 	text-align: center;
 }
 .footer_copy {

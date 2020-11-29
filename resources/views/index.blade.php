@@ -13,11 +13,9 @@
       <dl class="dl-style01">
         <dt>閲覧</dt>
         <dd><a href="{{ route('sales.personal') }}">月次売上（個人）</a></dd>
-        <dd><a href="">通期売上（部・課・個人）</a></dd>
         <dd><a href="{{ route('sales.client') }}">クライアント別売上</a></dd>
-        <dd><a href="">カテゴリー別売上</a></dd>
-        <dd><a href="">営業部門別売上</a></dd>
-
+        <dd><a href="{{ route('sales.category') }}">カテゴリー別売上</a></dd>
+        <dd><a href="{{ route('sales.department') }}">営業部門別売上</a></dd>
       </dl>
     </section>
   </div><!-- /content-inner -->

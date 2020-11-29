@@ -39,7 +39,7 @@
                 <!-- Authentication Links -->
                 @guest
                     <li class="nav-item">
-                        <a class="btn-primary btn mr-3" href="{{ route('login') }}">{{ __('ログイン') }}</a>
+                        <a class="btn mr-3" href="{{ route('login') }}">{{ __('ログイン') }}</a>
                     </li>
                     @if (Route::has('register'))
                         <li class="nav-item">

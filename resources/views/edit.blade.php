@@ -11,10 +11,10 @@
     <div class="section bg-w">
         <div class="content-inner">
           <div class="row mb-3 align-items-start">
-            <div class="col-12">
+            <div class="col-md-12">
               <label>●クライアント情報</label>
             </div>
-            <div class="col-6 form-group" id="client_name">
+            <div class="col-md-6 form-group" id="client_name">
               <select class="form-control" name="client_name" required="" data-error="※選択してください">
                 @foreach($clients as $value5)
                   @if ($value5 === $projectlist->client_name)
@@ -29,10 +29,10 @@
             </div>
           </div>
           <div class="row align-items-start mb-3">
-            <div class="col-12">
+            <div class="col-md-12">
               <label>●発注元営業部門情報</label>
             </div>
-            <div class="col-5 form-group">
+            <div class="col-md-5 form-group">
               <select class="form-control" name="department_name" required="" data-error="※選択してください">
                 @foreach($departments as $value4)
                   @if ($value4 === $projectlist->department_name)
@@ -44,7 +44,7 @@
               </select>
               <div class="help-block with-errors font-s"></div>
             </div>
-            <div class="col-2 form-group">
+            <div class="col-md-2 form-group">
               <div class="honorific">
                 <input class="form-control" type="text" name="sales_name" placeholder="担当者" value="{{ $projectlist->sales_name }}" required="" data-error="※入力必須です">
               </div>
@@ -55,11 +55,11 @@
             <div class="col-12">
             <label>●案件名</label>
             </div>
-            <div class="col-10 form-group">
+            <div class="col-md-10 form-group">
               <input class="form-control" type="text" name="project_name" value="{{ $projectlist->project_name }}" required="" data-error="※入力必須です">
               <div class="help-block with-errors font-s"></div>
             </div>
-            <div class="col-2 form-group" id="anken">
+            <div class="col-md-2 form-group" id="anken">
                 <select class="form-control data_section_sales_staff show_requiredlike" name="status" required>
                   @foreach($status as $value3)
                     @if ($value3 === $projectlist->status)
@@ -72,10 +72,10 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-12">
+            <div class="col-md-12">
               <label>●売上額</label>
             </div>
-            <div class="col-5 form-group">
+            <div class="col-md-5 form-group">
               <input class="form-control t-right numeral yen font-l mr-3" id="ju_uriage" type="text" name="price" value="{{ $projectlist->price }}" required="">円
               <div class="help-block with-errors font-s"></div>
             </div>
@@ -87,10 +87,9 @@
       <div class="mt30 bg-w" id="data_section_sales">
         <div class="content-inner">
           <div class="row">
-            <label class="col-3">●売上分配</label>
+            <label class="col-md-3">●売上分配</label>
           </div>
                     <div class="help-block with-errors font-s"></div>
-
 
                     <article class="sales_accordion_art">
                   <div class="accodion" data-event="accordion">
@@ -98,8 +97,8 @@
                     @foreach($creators as $creator)
                       <div class="itemList">
                         <div class="item-group row align-items-start">
-                          <div class="form-group col-2">
-                              <select class="form-control data_section_sales_staff" name="creator_name[]" required>
+                          <div class="form-group col-md-2">
+                            <select class="form-control data_section_sales_staff" name="creator_name[]" required>
                       <option value="">作業者</option>
                       @foreach($users as $value1)
                         @if ($value1 === $creator->creator_name)
@@ -111,12 +110,12 @@
                         </select>
                           </div>
 
-                          <div class="form-group col-4">
+                          <div class="form-group col-md-4">
                             <label>売上：</label>
                             <input class="form-control mr-3" type="text" name="creator_price[]" value="{{ $creator->creator_price }}" required>円
                           </div>
 
-                          <div class="form-group col-3">
+                          <div class="form-group col-md-3">
                             <select class="form-control" name="creator_category[]" required>
                               <option value="">カテゴリ</option>
                               @foreach($categories as $value2)
@@ -128,11 +127,11 @@
                               @endforeach
                             </select>
                           </div>
-                          <button class="btn my-auto remove_line" type="button">行を削除</button>
+                          <button class="btn my-auto remove_line ml-3" type="button">行を削除</button>
                         </div>
                       </div>
-            @endforeach
-                      <div class="row pl-3">
+                    @endforeach
+                      <div class="row pl-3 mt-5">
                         <button class="add_item btn" type="button">項目を追加する</button>
                       </div>
                       </div>

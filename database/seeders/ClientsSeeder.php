@@ -19,6 +19,9 @@ class ClientsSeeder extends Seeder
           ['client_name' => '株式会社B'],
           ['client_name' => '株式会社C'],
           ['client_name' => '株式会社D'],
+          ['client_name' => '株式会社E'],
+          ['client_name' => '株式会社F'],
+          ['client_name' => '株式会社G'],
       ]);
     }
 }

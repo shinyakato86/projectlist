@@ -14,7 +14,7 @@
           <div class="col-10">
             <label>●クライアント情報</label>
           </div>
-          <div class="col-6 form-group" id="client_name">
+          <div class="col-md-6 form-group" id="client_name">
             <select class="form-control data_section_sales_staff show_requiredlike" name="client_name" required>
               <option value="">クライアント</option>
             @foreach($clients as $client)
@@ -29,7 +29,7 @@
           <div class="col-12">
             <label>●発注元営業部門情報</label>
           </div>
-          <div class="col-5 form-group">
+          <div class="col-md-5 form-group">
             <select class="form-control data_section_sales_staff show_requiredlike" name="department_name" required>
               <option value="">---</option>
               @foreach($departments as $department)
@@ -38,7 +38,7 @@
             </select>
             <div class="help-block with-errors font-s"></div>
           </div>
-          <div class="col-2 form-group">
+          <div class="col-md-2 form-group">
             <div class="honorific">
               <input class="form-control" type="text" name="sales_name" placeholder="担当者" value="" required="" data-error="※入力必須です">
             </div>
@@ -49,11 +49,11 @@
           <div class="col-12">
           <label>●案件名</label>
           </div>
-          <div class="col-10 form-group">
+          <div class="col-md-10 form-group">
             <input class="form-control" type="text" name="project_name" value="" required="" data-error="※入力必須です">
             <div class="help-block with-errors font-s"></div>
           </div>
-          <div class="col-2 form-group">
+          <div class="form-group col-md-2">
               <select class="form-control data_section_sales_staff show_requiredlike" name="status" required>
                 <option value="">状態</option>
                   @foreach($status as $value)
@@ -69,68 +69,26 @@
           <div class="col-12">
             <label>●売上額</label>
           </div>
-          <div class="col-5 form-group">
-            <input class="form-control t-right numeral yen font-l mr-3" id="ju_uriage" type="text" name="price" value="" required="">円
+          <div class="col-md-5 form-group">
+            <input class="form-control t-right numeral yen font-l mr-3" id="uriage" type="text" name="price" value="" required="">円
             <div class="help-block with-errors font-s"></div>
         </div>
         </div>
       </div>
     </div>
 
-<!--
-        <div class='form-group'>
-            {{ Form::label('project_name', '案件名:') }}
-            {{ Form::text('project_name', null) }}
-        </div>
-        <div class='form-group'>
-          <label>営業部門：</label>
-          <select class="form-control data_section_sales_staff show_requiredlike" name="department_name">
-            <option value="">営業部門</option>
-          @foreach($departments as $department)
-            <option value="{{ $department }}">{{ $department }}</option>
-          @endforeach
-          </select>
-        </div>
-        <div class='form-group'>
-            {{ Form::label('sales_name', '営業担当:') }}
-            {{ Form::text('sales_name', null) }}
-        </div>
-        <div class='form-group'>
-          <label>クライアント名：</label>
-          <select class="form-control data_section_sales_staff show_requiredlike" name="client_name">
-            <option value="">クライアント名</option>
-          @foreach($clients as $client)
-            <option value="{{ $client }}">{{ $client }}</option>
-          @endforeach
-          </select>
-        </div>
-        <div class='form-group'>
-            {{ Form::label('price', '金額:') }}
-            {{ Form::text('price', null) }}
-        </div>
-        <div class='form-group'>
-          <label>状態：</label>
-          <select class="form-control data_section_sales_staff show_requiredlike" name="status">
-            <option value="">状態</option>
-          @foreach($status as $status)
-            <option value="{{ $status }}">{{ $status }}</option>
-          @endforeach
-          </select>
-        </div>-->
-
-
         <div class="mt-5 bg-w" id="data_section_sales">
           <div class="content-inner">
             <div class="row">
-              <label class="col-3">●売上分配</label>
+              <label class="col-md-3">●売上分配</label>
             </div>
                       <div class="help-block with-errors font-s"></div>
-                          <article class="sales_accordion_art" area="中日本" section="制作1部">
+                          <article class="sales_accordion_art">
                         <div class="accodion" data-event="accordion">
                           <div class="acc-content">
                             <div class="itemList">
                               <div class="item-group row align-items-start">
-                                <div class="form-group col-2">
+                                <div class="form-group col-md-2">
         														<select class="form-control data_section_sales_staff show_requiredlike" name="creator_name[]" required>
         										<option value="">作業者</option>
                             @foreach($users as $user)
@@ -139,12 +97,12 @@
                               </select>
                                 </div>
 
-                                <div class="form-group col-4">
+                                <div class="form-group col-md-4">
                                   <label>売上：</label>
                                   <input class="bunpai numeral yen form-control show_requiredlike mr-3" type="text" name="creator_price[]" value="" required>円
                                 </div>
 
-                                <div class="form-group col-3">
+                                <div class="form-group col-md-3">
                                   <select class="form-control show_requiredlike" name="creator_category[]" required>
                                     <option value="">カテゴリ</option>
                                     @foreach($categories as $category)
@@ -152,10 +110,10 @@
                                     @endforeach
                                   </select>
                                 </div>
-                                <button class="btn my-auto remove_line" type="button">行を削除</button><span class="unitPriceTime"></span>
+                                <button class="btn my-auto remove_line ml-3" type="button">行を削除</button><span class="unitPriceTime"></span>
         																						</div>
                             </div>
-                            <div class="row pl-3">
+                            <div class="row pl-3 mt-5">
                               <button class="add_item btn" type="button">項目を追加する</button>
                             </div>
 														</div>

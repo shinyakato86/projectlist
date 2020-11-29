@@ -6,6 +6,7 @@ use App\Models\Projectlist;
 use App\Models\Creators;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class ProjectlistController extends Controller
 {
@@ -23,22 +24,64 @@ class ProjectlistController extends Controller
     public function index(Request $request)
     {
 
+        $time = new Carbon(Carbon::now());
+        $year =  $time ->__get('year');
+        $month = $time ->__get('month');
+
         $users = \DB::table('users')->pluck('name');
 
-        if ($request->filled('keyword')) {
-            $keyword = $request->input('keyword');
-            $projectlist = Projectlist::where('project_name', 'like', '%' . $keyword . '%')
-            ->orWhere('project_name', 'like', '%' . $keyword . '%')
-            ->get();
-        } elseif ($request->filled('seach_user')){
-            $seach_user = $request->input('seach_user');
-            $projectlist = Projectlist::all()->where('author_name',$seach_user);
-        }else{
-            $projectlist = Projectlist::all();
+
+      if ($request->filled('seach_year') && $request->filled('seach_month') && $request->filled('seach_user')) {
+
+        $keyword1 = $request->input('seach_year');
+        $keyword2 = $request->input('seach_month');
+        $keyword3 = $request->input('seach_user');
+
+        $projectlist = Projectlist::whereYear('created_at', $keyword1)->whereMonth('created_at', $keyword2)
+        ->where('author_name', $keyword3)->get();
+
+      } elseif ($request->filled('seach_year') && $request->filled('seach_month')) {
+
+        $keyword1 = $request->input('seach_year');
+        $keyword2 = $request->input('seach_month');
+
+        $projectlist = Projectlist::whereYear('created_at', $keyword1)->whereMonth('created_at', $keyword2)
+        ->get();
+
+      } elseif ($request->filled('seach_year') && $request->filled('seach_user')) {
+
+        $keyword1 = $request->input('seach_year');
+        $keyword2 = $request->input('seach_user');
+
+        $projectlist = Projectlist::whereYear('created_at', $keyword1)->where('author_name', $keyword2)
+        ->get();
+
+      } elseif ($request->filled('seach_year')) {
+
+        $keyword1 = $request->input('seach_year');
+
+        $projectlist = Projectlist::whereYear('created_at', $keyword1)->get();
+
+      } elseif ($request->filled('seach_month')) {
+
+        $keyword1 = $request->input('seach_month');
+
+        $projectlist = Projectlist::whereMonth('created_at', $keyword1)->get();
+
+      } elseif ($request->filled('seach_month')) {
+
+        $keyword1 = $request->input('seach_user');
+
+        $projectlist = Projectlist::where('author_name', $keyword1)->get();
+
+      } else {
+        $projectlist = Projectlist::whereYear('created_at', $year)->whereMonth('created_at', $month)
+        ->get();
           }
 
+        $error_text = "検索結果がありません。";
 
-        return view('show', compact('projectlist', 'users'));
+        return view('show', compact('projectlist', 'users', 'year', 'month', 'error_text'));
     }
 
     /**

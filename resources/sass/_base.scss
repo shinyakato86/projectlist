@@ -115,19 +115,9 @@ body {
 	display: flex;
 	flex-direction: column;
 }
+
 body {
 	min-height: 100vh;
-}
-header {
-	min-width: 1024px;
-	width: 100%;
-	padding: 0 3%;
-}
-footer {
-	min-width: 1024px;
-	width: 100%;
-	padding: 0 3%;
-	margin-top: auto;
 }
 
 select {
