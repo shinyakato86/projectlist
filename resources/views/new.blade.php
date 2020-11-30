@@ -6,7 +6,7 @@
     <h2 class="heading02">受注案件新規登録</h2>
 
     <div class="formArea">
-    {{ Form::open(['route' => 'projectlist.store']) }}
+    {{ Form::open(['route' => 'projectlist.store', 'id' => 'uriage_form']) }}
 
     <div class="section bg-w">
       <div class="content-inner">
@@ -107,7 +107,7 @@
 
                                 <div class="form-group col-md-4">
                                   <label>売上：</label>
-                                  <input class="bunpai numeral yen form-control show_requiredlike mr-3" type="text" name="creator_price[]" value="" required>円
+                                  <input class="bunpai numeral yen form-control show_requiredlike mr-3" type="text" name="creator_price[]" value="" data-group="bunpai" required>円
                                 </div>
 
                                 <div class="form-group col-md-3">

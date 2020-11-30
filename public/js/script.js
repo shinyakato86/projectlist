@@ -41,20 +41,28 @@ $(function(){
   });
 
 
-  $(document).on("click",".submit",function(){
-         var total_sum = 0;
-         var bunpai_sum = 0;
+  var DoSum = function(self){
+  var GROUP = self.data('bunpai');
+  var SUM = 0;
 
-         $(".bunpai").each(function () {
-             var get_textbox_value = $(this).val();
-             if ($.isNumeric(get_textbox_value)) {
-                total_sum += parseFloat(get_textbox_value);
-                }
-              });
-                $("#total_sum_value").html(calculated_total_sum);
-         });
+  $("[data-group='"+ GROUP +"']").each(function(index){
+    SUM = SUM + Number($(this).val());
+  });
 
+  if($('#uriage').val() === SUM) {
+    return true;
+    }else {
+      $('#data_section_sales .help-block.with-errors').prepend('<p class="">売上の金額に合わせてください</p>');
+      return false;
+    }
+  };
 
+$('#uriage_form').submit(function(){
 
+  if(DoSum($('[data-group]')) == false){
+      return false;
+  }
+
+  });
 
 });
