@@ -78,7 +78,7 @@
           </div>
           <div class="row">
             <div class="col-md-12">
-              <label>●売上額</label>
+              <label>●売上額　※売上分配の合計が自動入力されます</label>
             </div>
             <div class="col-md-5 form-group">
               <input class="form-control t-right numeral yen font-l mr-3" id="uriage" type="text" name="price" value="{{ $projectlist->price }}" required="">円
