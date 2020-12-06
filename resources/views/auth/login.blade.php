@@ -51,17 +51,11 @@
                           <p class="ta-center">社員番号: 100000<br>パスワード: password</p>
                           <p class="ta-center mb-3">上記でログインできます。</p>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
+                        <div class="form-group row mb-0 justify-content-center">
+                            <div>
                                 <button type="submit" class="btn">
                                     {{ __('ログイン') }}
                                 </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn" href="{{ route('password.request') }}">
-                                        {{ __('パスワードを忘れた方') }}
-                                    </a>
-                                @endif
                             </div>
                         </div>
                     </form>
