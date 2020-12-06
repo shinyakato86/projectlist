@@ -50,13 +50,11 @@
                   @endif
                 @endforeach
               </select>
-              <div class="help-block with-errors font-s"></div>
             </div>
             <div class="col-md-2 form-group">
               <div class="honorific">
                 <input class="form-control" type="text" name="sales_name" placeholder="担当者" value="{{ $projectlist->sales_name }}" required="" data-error="※入力必須です">
               </div>
-              <div class="help-block with-errors font-s"></div>
             </div>
           </div>
           <div class="row mb-3 align-items-start">
@@ -65,7 +63,6 @@
             </div>
             <div class="col-md-10 form-group">
               <input class="form-control" type="text" name="project_name" value="{{ $projectlist->project_name }}" required="" data-error="※入力必須です">
-              <div class="help-block with-errors font-s"></div>
             </div>
             <div class="col-md-2 form-group" id="anken">
                 <select class="form-control data_section_sales_staff show_requiredlike" name="status" required>
@@ -84,8 +81,7 @@
               <label>●売上額</label>
             </div>
             <div class="col-md-5 form-group">
-              <input class="form-control t-right numeral yen font-l mr-3" id="ju_uriage" type="text" name="price" value="{{ $projectlist->price }}" required="">円
-              <div class="help-block with-errors font-s"></div>
+              <input class="form-control t-right numeral yen font-l mr-3" id="uriage" type="text" name="price" value="{{ $projectlist->price }}" required="">円
             </div>
 
           </div>
@@ -97,56 +93,55 @@
           <div class="row">
             <label class="col-md-3">●売上分配</label>
           </div>
-                    <div class="help-block with-errors font-s"></div>
 
-                    <article class="sales_accordion_art">
-                  <div class="accodion" data-event="accordion">
-                    <div class="acc-content">
-                    @foreach($creators as $creator)
-                      <div class="itemList">
-                        <div class="item-group row align-items-start">
-                          <div class="form-group col-md-2">
-                            <select class="form-control data_section_sales_staff" name="creator_name[]" required>
-                      <option value="">作業者</option>
-                      @foreach($users as $value1)
-                        @if ($value1 === $creator->creator_name)
-                          <option value="{{ $value1 }}" selected="selected">{{ $value1 }}</option>
-                        @else
-                          <option value="{{ $value1 }}">{{ $value1 }}</option>
-                        @endif
-                      @endforeach
-                        </select>
-                          </div>
+          <article class="sales_accordion_art">
+            <div class="accodion" data-event="accordion">
+              <div class="acc-content">
+              @foreach($creators as $creator)
+                <div class="itemList">
+                  <div class="item-group row align-items-start">
+                    <div class="form-group col-md-2">
+                      <select class="form-control data_section_sales_staff" name="creator_name[]" required>
+                <option value="">作業者</option>
+                @foreach($users as $value1)
+                  @if ($value1 === $creator->creator_name)
+                    <option value="{{ $value1 }}" selected="selected">{{ $value1 }}</option>
+                  @else
+                    <option value="{{ $value1 }}">{{ $value1 }}</option>
+                  @endif
+                @endforeach
+                  </select>
+                    </div>
 
-                          <div class="form-group col-md-4">
-                            <label>売上：</label>
-                            <input class="form-control mr-3" type="text" name="creator_price[]" value="{{ $creator->creator_price }}" required>円
-                          </div>
+                    <div class="form-group col-md-4">
+                      <label>売上：</label>
+                      <input class="form-control mr-3" type="text" name="creator_price[]" value="{{ $creator->creator_price }}" required data-group="bunpai">円
+                    </div>
 
-                          <div class="form-group col-md-3">
-                            <select class="form-control" name="creator_category[]" required>
-                              <option value="">カテゴリ</option>
-                              @foreach($categories as $value2)
-                                @if ($value2 === $creator->creator_category)
-                                  <option value="{{ $value2 }}" selected="selected">{{ $value2 }}</option>
-                                @else
-                                  <option value="{{ $value2 }}">{{ $value2 }}</option>
-                                @endif
-                              @endforeach
-                            </select>
-                          </div>
-                          <button class="btn my-auto remove_line ml-3" type="button">行を削除</button>
-                        </div>
-                      </div>
-                    @endforeach
-                      <div class="row pl-3 mt-5">
-                        <button class="add_item btn" type="button">項目を追加する</button>
-                      </div>
-                      </div>
+                    <div class="form-group col-md-3">
+                      <select class="form-control" name="creator_category[]" required>
+                        <option value="">カテゴリ</option>
+                        @foreach($categories as $value2)
+                          @if ($value2 === $creator->creator_category)
+                            <option value="{{ $value2 }}" selected="selected">{{ $value2 }}</option>
+                          @else
+                            <option value="{{ $value2 }}">{{ $value2 }}</option>
+                          @endif
+                        @endforeach
+                      </select>
+                    </div>
+                    <button class="btn my-auto remove_line ml-3" type="button">行を削除</button>
                   </div>
-                </article>
-              </div>
+                </div>
+              @endforeach
+                <div class="row pl-3 mt-5">
+                  <button class="add_item btn" type="button">項目を追加する</button>
+                </div>
+                </div>
             </div>
+          </article>
+        </div>
+      </div>
 
         <div class="form-group mt-5">
             {{ Form::submit('更新する', ['class' => 'btn-03']) }}
