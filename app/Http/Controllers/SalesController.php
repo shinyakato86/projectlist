@@ -106,6 +106,7 @@ class SalesController extends Controller
     }
 
 
+
     public function sales_department(Request $request)
     {
 
@@ -136,5 +137,6 @@ class SalesController extends Controller
         return view('sales_department', compact('sales_department', 'year', 'month', 'error_text'));
 
     }
+
 
 }
