@@ -11,28 +11,28 @@
           <table class="table-bordered table-hover table-01 mt-5">
             <thead>
               <tr>
-                <th class="col-no">作成日</th>
-                <th class="col-date">発注元営業部門</th>
-                <th class="col-section">営業</th>
-                <th class="col-client">クライアント名</th>
-                <th class="col-anken">案件名</th>
-                <th class="col-creater">作成者</th>
-                <th class="col-price">金額</th>
-                <th class="col-status">状態</th>
-                <th class="col-status"></th>
+                <th>作成日</th>
+                <th>発注元営業部門</th>
+                <th>営業</th>
+                <th>クライアント名</th>
+                <th>案件名</th>
+                <th>作成者</th>
+                <th>金額</th>
+                <th>状態</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
               @foreach ($projectlist as $projectlist)
               <tr>
-                <td>{{ $projectlist->created_at->format('Y/m/d') }}</td>
-                <td>{{ $projectlist->department_name }}</td>
-                <td>{{ $projectlist->sales_name }}</td>
-                <td>{{ $projectlist->client_name }}</td>
-                <td>{{ $projectlist->project_name }}</td>
-                <td>{{ $projectlist->author_name }}</td>
-                <td>{{ number_format($projectlist->price) }}</td>
-                <td>{{ $projectlist->status }}</td>
+                <td class="ta-center">{{ $projectlist->created_at->format('Y/m/d') }}</td>
+                <td class="ta-center">{{ $projectlist->department_name }}</td>
+                <td class="ta-center">{{ $projectlist->sales_name }}</td>
+                <td class="ta-center">{{ $projectlist->client_name }}</td>
+                <td class="ta-center">{{ $projectlist->project_name }}</td>
+                <td class="ta-center">{{ $projectlist->author_name }}</td>
+                <td class="ta-right">{{ number_format($projectlist->price) }}</td>
+                <td class="ta-center">{{ $projectlist->status }}</td>
                 <td><a href={{ route('projectlist.detail', ['id' =>  $projectlist->id]) }} class="btn-02-s">詳細</a></td>
               </tr>
               @endforeach

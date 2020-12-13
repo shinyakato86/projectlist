@@ -38,50 +38,62 @@ class ProjectlistController extends Controller
         $keyword3 = $request->input('seach_user');
 
         $projectlist = Projectlist::whereYear('created_at', $keyword1)->whereMonth('created_at', $keyword2)
-        ->where('author_name', $keyword3)->get();
+        ->where('author_name', $keyword3)->orderBy('created_at', 'asc')->get();
 
       } elseif ($request->filled('seach_year') && $request->filled('seach_month')) {
 
         $keyword1 = $request->input('seach_year');
         $keyword2 = $request->input('seach_month');
+        $keyword3 = null;
 
-        $projectlist = Projectlist::whereYear('created_at', $keyword1)->whereMonth('created_at', $keyword2)
-        ->get();
+        $projectlist = Projectlist::whereYear('created_at', $keyword1)->whereMonth('created_at', $keyword2)->orderBy('created_at', 'asc')->get();
 
       } elseif ($request->filled('seach_year') && $request->filled('seach_user')) {
 
         $keyword1 = $request->input('seach_year');
-        $keyword2 = $request->input('seach_user');
+        $keyword2 = null;
+        $keyword3 = $request->input('seach_user');
 
-        $projectlist = Projectlist::whereYear('created_at', $keyword1)->where('author_name', $keyword2)
-        ->get();
+        $projectlist = Projectlist::whereYear('created_at', $keyword1)->where('author_name', $keyword3)->orderBy('created_at', 'asc')->get();
 
       } elseif ($request->filled('seach_year')) {
 
         $keyword1 = $request->input('seach_year');
+        $keyword2 = null;
+        $keyword3 = null;
 
-        $projectlist = Projectlist::whereYear('created_at', $keyword1)->get();
-
-      } elseif ($request->filled('seach_month')) {
-
-        $keyword1 = $request->input('seach_month');
-
-        $projectlist = Projectlist::whereMonth('created_at', $keyword1)->get();
+        $projectlist = Projectlist::whereYear('created_at', $keyword1)->orderBy('created_at', 'asc')->get();
 
       } elseif ($request->filled('seach_month')) {
 
-        $keyword1 = $request->input('seach_user');
+        $keyword1 = null;
+        $keyword2 = $request->input('seach_month');
+        $keyword3 = null;
 
-        $projectlist = Projectlist::where('author_name', $keyword1)->get();
+
+        $projectlist = Projectlist::whereMonth('created_at', $keyword2)->orderBy('created_at', 'asc')->get();
+
+      } elseif ($request->filled('seach_user')) {
+
+        $keyword1 = null;
+        $keyword2 = null;
+        $keyword3 = $request->input('seach_user');
+
+        $projectlist = Projectlist::where('author_name', $keyword3)->orderBy('created_at', 'asc')->get();
 
       } else {
-        $projectlist = Projectlist::whereYear('created_at', $year)->whereMonth('created_at', $month)
+
+        $keyword1 = $year;
+        $keyword2 = $month;
+        $keyword3 = null;
+
+        $projectlist = Projectlist::whereYear('created_at', $keyword1)->whereMonth('created_at', $keyword2)->orderBy('created_at', 'asc')
         ->get();
           }
 
         $error_text = "検索結果がありません。";
 
-        return view('show', compact('projectlist', 'users', 'year', 'month', 'error_text'));
+        return view('show', compact('projectlist', 'users', 'year', 'month', 'error_text', 'keyword1', 'keyword2', 'keyword3'));
     }
 
     /**
