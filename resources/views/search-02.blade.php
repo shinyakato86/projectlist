@@ -5,7 +5,7 @@
           <select class="form-control" name="seach_year">
               <option value="" selected>年</option>
               @for ($i=$year - 5; $i <= $year; $i++)
-              <option value="{{$i}}" @if($i == $year) selected="selected" @endif>{{$i}}年</option>
+              <option value="{{$i}}" @if($i == $keyword) selected="selected" @endif>{{$i}}年</option>
               @endfor
           </select>
         </div>
@@ -13,7 +13,7 @@
           <select class="form-control" name="seach_month">
               <option value="">月</option>
               @for ($i=1; $i <= 12; $i++)
-              <option value="{{ $i }}" @if($i == $month) selected="selected" @endif>{{ $i }}月</option>
+              <option value="{{ $i }}" @if($i == $keyword2) selected="selected" @endif>{{ $i }}月</option>
               @endfor
           </select>
         </div>
