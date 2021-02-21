@@ -3,6 +3,12 @@
 @section('content')
 
     <div class="contentsArea">
+      <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+        <ul class="breadcrumb">
+          <li class="breadcrumb-item"><a href={{route('index')}}>TOP</a></li>
+          <li class="breadcrumb-item active" aria-current="page">受注案件一覧</li>
+        </ul>
+      </nav>
       <section class="section">
         <h2 class="heading02">受注案件一覧</h2>
 

@@ -1,8 +1,14 @@
 @extends('layout')
 
 @section('content')
+  <div class="contentsArea">
+    <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+      <ul class="breadcrumb">
+        <li class="breadcrumb-item"><a href={{route('index')}}>TOP</a></li>
+        <li class="breadcrumb-item active" aria-current="page">受注案件新規登録</li>
+      </ul>
+    </nav>
     <section class="section">
-    <div class="contentsArea">
     <h2 class="heading02">受注案件新規登録</h2>
 
     <div class="formArea">
@@ -131,6 +137,6 @@
       <a href={{ route('projectlist.index') }} class="btn btn-secondary">一覧に戻る</a>
     </div>
     </div>
-    <section>
+  </section>
 
 @endsection
