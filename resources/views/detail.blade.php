@@ -12,7 +12,7 @@
             <td>{{ $projectlist->created_at->format('Y/m/d') }}</td>
         </tr>
         <tr>
-            <th>計上月</th>
+            <th>計上日</th>
             <td>{{ $projectlist->accounting_date->format('Y/m/d') }}</td>
         </tr>
         <tr>

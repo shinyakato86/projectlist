@@ -53,7 +53,7 @@
           </div>
           <div class="col-md-2 form-group">
             <div class="honorific">
-              <input class="form-control" type="text" name="sales_name" placeholder="担当者" value="" required="" data-error="※入力必須です">
+              <input class="form-control" type="text" name="sales_name" placeholder="担当者" value="{{ old('sales_name') }}" required="" data-error="※入力必須です">
             </div>
           </div>
         </div>
@@ -62,7 +62,7 @@
           <label>●案件名</label>
           </div>
           <div class="col-md-10 form-group">
-            <input class="form-control" type="text" name="project_name" value="" required="" data-error="※入力必須です">
+            <input class="form-control" type="text" name="project_name" value="{{ old('project_name') }}" required="" data-error="※入力必須です">
           </div>
           <div class="form-group col-md-2">
               <select class="form-control data_section_sales_staff show_requiredlike" name="status" required>
@@ -78,7 +78,7 @@
             <label>●売上額　※売上分配の合計が自動入力されます</label>
           </div>
           <div class="col-md-5 form-group">
-            <input class="form-control t-right numeral yen font-l mr-3" id="uriage" type="text" name="price" value="" required="">円
+            <input class="form-control t-right numeral yen font-l mr-3" id="uriage" type="text" name="price" value="{{ old('uriage') }}" required="">円
         </div>
         </div>
       </div>
@@ -107,7 +107,6 @@
                     <label>売上：</label>
                     <input class="bunpai numeral yen form-control show_requiredlike mr-3" type="text" name="creator_price[]" value="" data-group="bunpai" required>円
                   </div>
-
                   <div class="form-group col-md-3">
                     <select class="form-control show_requiredlike" name="creator_category[]" required>
                       <option value="">カテゴリ</option>
@@ -119,6 +118,9 @@
                   <button class="btn my-auto remove_line ml-3" type="button">行を削除</button><span class="unitPriceTime"></span>
       					</div>
               </div>
+              @foreach ($errors->all() as $error)
+                <p class="errorText w-100 ml-3">※{{ $error }}</p>
+              @endforeach
               <div class="row pl-3 mt-5">
                 <button class="add_item btn" type="button">項目を追加する</button>
               </div>

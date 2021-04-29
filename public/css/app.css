@@ -12599,6 +12599,10 @@ label {
   margin: 0;
 }
 
+.errorText {
+  color: #f00;
+}
+
 .dl-style01 {
   width: 100%;
   margin: 0 auto 30px;

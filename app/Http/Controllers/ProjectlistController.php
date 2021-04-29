@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Projectlist;
 use App\Models\Creators;
 use Illuminate\Http\Request;
+use App\Http\Requests\CreateProjectlisRequest;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
@@ -127,7 +128,7 @@ class ProjectlistController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateProjectlisRequest $request)
     {
         $projectlist = new Projectlist;
         $user = \Auth::user();
