@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Projectlist;
 use Carbon\Carbon;
 
 class SalesController extends Controller
@@ -144,7 +145,7 @@ class SalesController extends Controller
         $keyword = $year;
         $keyword2 = $month;
 
-        $sales_department = \DB::table('projectlists')->selectRaw('department_name , sum(price) as amount, accounting_date')->whereYear('accounting_date', $keyword)->whereMonth('accounting_date', $keyword2)->groupByRaw('department_name')->orderBy('amount', 'desc')->get();
+        $sales_department = Projectlist::selectRaw('department_name , sum(price) as amount, accounting_date')->whereYear('accounting_date', $keyword)->whereMonth('accounting_date', $keyword2)->groupByRaw('department_name')->orderBy('amount', 'desc')->get();
 
         }
 
