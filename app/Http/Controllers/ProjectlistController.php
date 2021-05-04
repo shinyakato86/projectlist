@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Projectlist;
-use App\Models\Creators;
+use App\Models\User;
+use App\Models\Creator;
+use App\Models\Category;
+use App\Models\Department;
+use App\Models\Client;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateProjectlisRequest;
 use Illuminate\Support\Facades\DB;
@@ -29,7 +33,7 @@ class ProjectlistController extends Controller
         $year =  $time ->__get('year');
         $month = $time ->__get('month');
 
-        $users = \DB::table('users')->pluck('name');
+        $users = User::pluck('name');
 
 
       if ($request->filled('seach_year') && $request->filled('seach_month') && $request->filled('seach_user')) {
@@ -106,15 +110,15 @@ class ProjectlistController extends Controller
     {
         $projectlist = new Projectlist;
 
-        $categories = \DB::table('categories')->pluck('category_name');
+        $categories = Category::pluck('category_name');
 
-        $users = \DB::table('users')->pluck('name');
+        $users = User::pluck('name');
 
-        $departments = \DB::table('departments')->pluck('department_name');
+        $departments = Department::pluck('department_name');
 
         $status = \DB::table('status')->pluck('status_name');
 
-        $clients = \DB::table('clients')->pluck('client_name');
+        $clients = Client::pluck('client_name');
 
         $today = new Carbon(Carbon::now());
 
@@ -154,7 +158,7 @@ class ProjectlistController extends Controller
 
         }
 
-        DB::table('creators')->insert($data);
+        Creator::insert($data);
 
         return redirect()->route('projectlist.detail', ['id' => $projectlist->id]);
     }
@@ -162,14 +166,14 @@ class ProjectlistController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\ifrojectlist  $projectlist
+     * @param  \App\projectlist  $projectlist
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
         $projectlist = Projectlist::find($id);
 
-        $creators = Creators::all()->where('id',$id);
+        $creators = Creator::all()->where('id',$id);
 
         return view('detail', compact('projectlist', 'creators'));
     }
@@ -183,17 +187,17 @@ class ProjectlistController extends Controller
     public function edit($id)
     {
         $projectlist = Projectlist::find($id);
-        $creators = Creators::all()->where('id',$id);
+        $creators = Creator::all()->where('id',$id);
 
-        $users = \DB::table('users')->pluck('name');
+        $users = User::pluck('name');
 
-        $categories = \DB::table('categories')->pluck('category_name');
+        $categories = Category::pluck('category_name');
 
-        $departments = \DB::table('departments')->pluck('department_name');
+        $departments = Department::pluck('department_name');
 
         $status = \DB::table('status')->pluck('status_name');
 
-        $clients = \DB::table('clients')->pluck('client_name');
+        $clients = Client::pluck('client_name');
 
         return view('edit', compact('projectlist', 'creators', 'users', 'categories', 'departments', 'status', 'clients'));
     }
@@ -217,7 +221,7 @@ class ProjectlistController extends Controller
         $projectlist->accounting_date = request('accounting_date');
         $projectlist->save();
 
-        $old_creators = Creators::find($id);
+        $old_creators = Creator::find($id);
         $old_creators->delete();
 
         $data = [];
@@ -245,7 +249,7 @@ class ProjectlistController extends Controller
     public function destroy($id)
     {
         $projectlist = Projectlist::find($id);
-        $creators = Creators::find($id);
+        $creators = Creator::find($id);
 
         $projectlist->delete();
         $creators->delete();
