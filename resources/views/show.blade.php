@@ -17,7 +17,7 @@
           <table class="table-bordered table-hover table-01 mt-5">
             <thead>
               <tr>
-                <th>作成日</th>
+                <th>計上日</th>
                 <th>発注元営業部門</th>
                 <th>営業</th>
                 <th>クライアント名</th>
@@ -31,7 +31,7 @@
             <tbody>
               @foreach ($projectlist as $projectlist)
               <tr>
-                <td class="ta-center">{{ $projectlist->created_at->format('Y/m/d') }}</td>
+                <td class="ta-center">{{ $projectlist->accounting_date->format('Y/m/d') }}</td>
                 <td class="ta-center">{{ $projectlist->department_name }}</td>
                 <td class="ta-center">{{ $projectlist->sales_name }}</td>
                 <td class="ta-center">{{ $projectlist->client_name }}</td>
